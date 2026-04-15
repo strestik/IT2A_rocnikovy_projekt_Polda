@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Polda
 {
-    internal class Object
+    internal class Hotspot
     {
         public string Name { get; set; }
         public double XPercent { get; set; }

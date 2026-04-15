@@ -20,3 +20,4 @@ C:\Users\61824strestik\source\repos\Polda\Polda\obj\Debug\net8.0-windows\Polda.g
 C:\Users\61824strestik\source\repos\Polda\Polda\obj\Debug\net8.0-windows\ref\Polda.dll
 C:\Users\61824strestik\source\repos\Polda\Polda\obj\Debug\net8.0-windows\Polda_Content.g.cs
 C:\Users\61824strestik\source\repos\Polda\Polda\bin\Debug\net8.0-windows\img\Polda.png
+C:\Users\61824strestik\source\repos\Polda\Polda\obj\Debug\net8.0-windows\Polda.sourcelink.json
