@@ -1,4 +1,9 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Shapes;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -7,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Polda
@@ -17,19 +21,31 @@ namespace Polda
     /// </summary>
     public partial class MainWindow : Window
     {
+        Random rnd = new Random();
+
         public MainWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
         }
 
-        
-        Random rnd = new Random();
-        Hotspot activePoint;
-        List<Hotspot> points = new List<Hotspot>()
-        {                       
-            new Hotspot() { Name = "Jumbo", XPercent = 0.9, YPercent = 0.2, init = "Jumbo" },
-            new Hotspot() { Name = "Postel", XPercent = 1, YPercent = 0.5, init = "Postel" },
+        //List<Hotspot> points = new List<Hotspot>()
+        //{                       
+        //    new Hotspot() { Name = "Jumbo", XPercent = 0.9, YPercent = 0.2, init = "Jumbo" },
+        //    new Hotspot() { Name = "Postel", XPercent = 1, YPercent = 0.5, init = "Postel" },
+        //};
+        //Hotspot hot1 = new Hotspot("Jumbo", 0.9, 0.2, "Jumbo");
+        //Hotspot hot2 = new Hotspot("Postel", 1, 0.5, "Postel");
+        //List<Hotspot> polygons = //new List<Hotspot>()
+        //{
+        //    //hot1,
+        //    //hot2
+        //    new Hotspot() { Name = "Jumbo", XPercent = 0.9, YPercent = 0.2, init = "Jumbo" },
+        //};
+        private List<Hotspot> polygons = new List<Hotspot>()
+        {
+            new Hotspot("Jumbo", 0.9, 0.2, "Jumbo"),
+            new Hotspot("Postel", 1.0, 0.5, "Postel")
         };
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -41,40 +57,33 @@ namespace Polda
         {
             OverlayCanvas.Children.Clear();
 
-            foreach (var point in points)
+            foreach (var poly in polygons)
             {
-                double x = MapImage.ActualWidth * point.XPercent;
-                double y = MapImage.ActualHeight * point.YPercent;
+                //    double x = MapImage.ActualWidth * point.XPercent;
+                //    double y = MapImage.ActualHeight * point.YPercent;
 
-                Button btn = new Button()
-                {
-                    Content = point.Name,
-                    Tag = point
-                };
+                //    Button btn = new Button()
+                //    {
+                //        Content = point.Name,
+                //        Tag = point
+                //    };
 
-                btn.Click += Btn_Click;
+                //    btn.Click += Btn_Click;
 
-                Canvas.SetLeft(btn, x);
-                Canvas.SetTop(btn, y);
+                //    Canvas.SetLeft(btn, x);
+                //    Canvas.SetTop(btn, y);
 
-                OverlayCanvas.Children.Add(btn);
+                //OverlayCanvas.Children.Add(btn);
 
-                //Add the Polygon Element
-                Polygon myPolygon = new Polygon();
-                myPolygon.Stroke = System.Windows.Media.Brushes.Black;
-                myPolygon.Fill = System.Windows.Media.Brushes.LightSeaGreen;
-                myPolygon.StrokeThickness = 2;
-                myPolygon.HorizontalAlignment = HorizontalAlignment.Left;
-                myPolygon.VerticalAlignment = VerticalAlignment.Center;
-                System.Windows.Point Point1 = new System.Windows.Point(1, 50);
-                System.Windows.Point Point2 = new System.Windows.Point(10, 80);
-                System.Windows.Point Point3 = new System.Windows.Point(50, 50);
+                System.Windows.Point Point1 = new System.Windows.Point(456 * poly.XPercent, 870 * poly.YPercent);
+                System.Windows.Point Point2 = new System.Windows.Point(545 * poly.XPercent, 570 * poly.YPercent);
+                System.Windows.Point Point3 = new System.Windows.Point(50 * poly.XPercent, 550 * poly.YPercent);
                 PointCollection myPointCollection = new PointCollection();
                 myPointCollection.Add(Point1);
                 myPointCollection.Add(Point2);
                 myPointCollection.Add(Point3);
-                myPolygon.Points = myPointCollection;
-                OverlayCanvas.Children.Add(myPolygon);
+                poly.polygon.Points = myPointCollection;
+                OverlayCanvas.Children.Add(poly.polygon);
             }
         }
         private void Btn_Click(object sender, RoutedEventArgs e)
@@ -106,8 +115,8 @@ namespace Polda
         {
             var pos = e.GetPosition(MapImage);
 
-            double xPercent = pos.X / MapImage.ActualWidth;
-            double yPercent = pos.Y / MapImage.ActualHeight;
+            double xPercent = pos.X;
+            double yPercent = pos.Y;
 
             MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
         }
