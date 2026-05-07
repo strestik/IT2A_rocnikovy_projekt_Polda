@@ -25,8 +25,7 @@ namespace Polda
         public Polygon polygon { get; set; } = new Polygon();
 
 
-        public Hotspot(string name, double xPercent, double yPercent, string item = "Empty",
-                   System.Windows.Media.Brush stroke = null, double strokeThickness = 1)
+        public Hotspot(string name, double xPercent, double yPercent, string item = "Empty", System.Windows.Media.Brush stroke = null, double strokeThickness = 1)
         {
             Name = name;
             XPercent = xPercent;
@@ -38,7 +37,6 @@ namespace Polda
             polygon.StrokeThickness = strokeThickness;
             polygon.HorizontalAlignment = HorizontalAlignment.Left;
             polygon.VerticalAlignment = VerticalAlignment.Center;
-            
         }
     }
 }

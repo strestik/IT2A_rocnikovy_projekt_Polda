@@ -27,11 +27,12 @@ namespace Polda
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
+            Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, new Image(), "Pankrac");
         }
 
         private List<Hotspot> polygons = new List<Hotspot>()
         {
-            new Hotspot("Jumbo", 0.9, 0.2, "Jumbo"),
+            new Hotspot("Jumbo", 3, 0.9, "Jumbo"),
             new Hotspot("Postel", 1.0, 0.5, "Postel")
         };
 
@@ -46,6 +47,7 @@ namespace Polda
 
             foreach (var poly in polygons)
             {
+                poly.polygon.MouseDown -= Polygon_MouseDown;
                 poly.polygon.MouseDown += Polygon_MouseDown;
                 poly.polygon.Tag = poly;
 
@@ -57,7 +59,7 @@ namespace Polda
                 myPointCollection.Add(Point2);
                 myPointCollection.Add(Point3);
                 poly.polygon.Points = myPointCollection;
-                OverlayCanvas.Children.Add(poly.polygon);//
+                OverlayCanvas.Children.Add(poly.polygon);
             }
         }
 
@@ -65,7 +67,7 @@ namespace Polda
         {
             Polygon btn = sender as Polygon;
             Hotspot point = btn.Tag as Hotspot;
-            MessageBox.Show("aaaaaaaaaaaaaaaa");
+            MessageBox.Show(point.init);
 
         }
 
