@@ -12,3 +12,7 @@
 29/4/2026
 ---------
 - Polygon nyní funguje jako tlačítko s vnitřními daty
+
+7/5/2026
+---------
+- Drobná oprava hotspotů, přidání postavy hráče a metody move()
