@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "IT2A_rocnikovy_projekt_Polda/1.0.0": {
+        "runtime": {
+          "IT2A_rocnikovy_projekt_Polda.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "IT2A_rocnikovy_projekt_Polda/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
