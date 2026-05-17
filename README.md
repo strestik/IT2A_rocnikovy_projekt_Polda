@@ -16,7 +16,3 @@
 7/5/2026
 ---------
 - Drobná oprava hotspotů, přidání postavy hráče a metody move()
-
-13/5/2026
----------
-- Úprava složek
