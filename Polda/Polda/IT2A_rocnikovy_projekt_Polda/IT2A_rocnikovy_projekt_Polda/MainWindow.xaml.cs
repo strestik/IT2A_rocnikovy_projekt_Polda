@@ -25,7 +25,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
-            Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, new Image(), "Pankrac");
+            //Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, new Image(), "Pankrac");
         }
 
         private List<Hotspot> polygons = new List<Hotspot>()
