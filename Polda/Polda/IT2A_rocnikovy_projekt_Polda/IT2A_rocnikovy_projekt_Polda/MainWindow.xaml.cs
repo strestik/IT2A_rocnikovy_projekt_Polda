@@ -19,13 +19,13 @@ namespace IT2A_rocnikovy_projekt_Polda
     public partial class MainWindow : Window
     {
         Random rnd = new Random();
-        
+        Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, new Image(), "Pankrac");
+
 
         public MainWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
-            //Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, new Image(), "Pankrac");
         }
 
         private List<Hotspot> polygons = new List<Hotspot>()
@@ -37,6 +37,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             DrawPoints();
+            OverlayCanvas.Children.Add(pankrac.pankrac);
         }
 
         void DrawPoints()
@@ -66,6 +67,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             Polygon btn = sender as Polygon;
             Hotspot point = btn.Tag as Hotspot;
             MessageBox.Show(point.init);
+            pankrac.move(point.XPercent, point.YPercent);
 
         }
 
@@ -81,6 +83,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             double xPercent = pos.X;
             double yPercent = pos.Y;
+            pankrac.move(xPercent, yPercent);
 
             MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
             MessageBox.Show($"Tam nic není.");

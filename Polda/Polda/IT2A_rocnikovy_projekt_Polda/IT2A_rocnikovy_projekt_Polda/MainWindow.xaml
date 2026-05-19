@@ -9,7 +9,7 @@
     <Grid>
 
         <Image Name="MapImage"
-       Source="/img/Polda.png"
+       Source="pack://application:,,,/img/Polda.png"
        Stretch="Uniform"
        MouseDown="MapImage_MouseDown"/>
 

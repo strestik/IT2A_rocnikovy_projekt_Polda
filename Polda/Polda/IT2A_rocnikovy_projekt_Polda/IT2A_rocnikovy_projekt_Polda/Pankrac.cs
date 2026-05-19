@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace IT2A_rocnikovy_projekt_Polda
@@ -24,6 +25,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             posY = yPercent;
             pankrac = img;
             init = item;
+            pankrac.Source = new BitmapImage(new Uri("img/lowPolda.png", UriKind.Relative));
         }
 
         public void refresh()
@@ -35,7 +37,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         public void move(double targetX, double targetY)
         {
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(16); // ~60fps
+            timer.Interval = TimeSpan.FromMilliseconds(8); 
             timer.Tick += (s, e) =>
             {
 
