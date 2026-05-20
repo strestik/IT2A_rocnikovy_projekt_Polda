@@ -37,14 +37,14 @@ namespace IT2A_rocnikovy_projekt_Polda
         public void move(double targetX, double targetY)
         {
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(8); 
+            timer.Interval = TimeSpan.FromMilliseconds(.0001); 
             timer.Tick += (s, e) =>
             {
 
                 double deltaX = targetX - posX;
                 double deltaY = targetY - posY;
                 double distance = Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
-                if (distance < 3)
+                if (distance < 1)
                 {
                     posX = targetX;
                     posY = targetY;
@@ -52,7 +52,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                     timer.Stop();
                     return;
                 }
-                double speed = 3; // pixels per tick
+                double speed = 0.03; // pixels per tick
                 posX += (deltaX / distance) * speed;
                 posY += (deltaY / distance) * speed;
                 refresh();
