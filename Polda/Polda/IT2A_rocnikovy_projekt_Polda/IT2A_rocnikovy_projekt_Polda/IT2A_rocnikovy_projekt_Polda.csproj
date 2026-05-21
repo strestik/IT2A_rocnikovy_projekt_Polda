@@ -9,12 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\back.jpg" />
+    <None Remove="img\Bez názvu.png" />
     <None Remove="img\lowPolda.png" />
     <None Remove="img\Pankrac.png" />
     <None Remove="img\Polda.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="img\back.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Bez názvu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="img\lowPolda.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

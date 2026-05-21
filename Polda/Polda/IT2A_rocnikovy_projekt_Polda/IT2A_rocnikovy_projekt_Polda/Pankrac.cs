@@ -30,21 +30,22 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         public void refresh()
         {
-            Canvas.SetLeft(pankrac, posX);
-            Canvas.SetTop(pankrac, posY);
+            Canvas.SetLeft(pankrac, posX - pankrac.ActualWidth/2);
+            Canvas.SetTop(pankrac, posY - pankrac.ActualHeight/2);
         }
 
+        public DispatcherTimer timer = new DispatcherTimer();
         public void move(double targetX, double targetY)
         {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(.0001); 
+            timer.Stop();
             timer.Tick += (s, e) =>
             {
-
+                timer.Interval = TimeSpan.FromMilliseconds(.0001);
                 double deltaX = targetX - posX;
                 double deltaY = targetY - posY;
                 double distance = Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
-                if (distance < 1)
+
+                if (distance < 3)
                 {
                     posX = targetX;
                     posY = targetY;

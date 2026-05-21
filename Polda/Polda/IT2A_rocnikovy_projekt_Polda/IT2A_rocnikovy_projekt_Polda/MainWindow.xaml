@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT2A_rocnikovy_projekt_Polda"
         mc:Ignorable="d"
+        WindowState="Maximized"
+        WindowStyle="None"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
         <Image Name="MapImage"
-       Source="pack://application:,,,/img/Polda.png"
-       Stretch="Uniform"
+       Source="/img/back.jpg"
+       Stretch="Fill"
        MouseDown="MapImage_MouseDown"/>
 
         <Canvas Name="OverlayCanvas"/>

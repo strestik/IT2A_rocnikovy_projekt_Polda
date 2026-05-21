@@ -83,6 +83,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             double xPercent = pos.X;
             double yPercent = pos.Y;
+
             pankrac.move(xPercent, yPercent);
 
             MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
