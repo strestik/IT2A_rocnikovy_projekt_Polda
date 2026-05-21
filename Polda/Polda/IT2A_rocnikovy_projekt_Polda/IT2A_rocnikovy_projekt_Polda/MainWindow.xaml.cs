@@ -19,7 +19,7 @@ namespace IT2A_rocnikovy_projekt_Polda
     public partial class MainWindow : Window
     {
         Random rnd = new Random();
-        Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, new Image(), "Pankrac");
+        Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, "Pankrac");
 
 
         public MainWindow()
@@ -40,7 +40,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             OverlayCanvas.Children.Add(pankrac.pankrac);
         }
 
-        void DrawPoints()
+    void DrawPoints()
         {
             OverlayCanvas.Children.Clear();
 
@@ -86,8 +86,8 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             pankrac.move(xPercent, yPercent);
 
-            MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
-            MessageBox.Show($"Tam nic není.");
+            //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
+            //MessageBox.Show($"Tam nic není.");
         }
     }
 }
