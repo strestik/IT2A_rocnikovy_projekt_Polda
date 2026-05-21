@@ -16,3 +16,7 @@
 7/5/2026
 ---------
 - Drobná oprava hotspotů, přidání postavy hráče a metody move()
+
+21/5/2026
+---------
+- Ladění prostředí a pozadí, oprava nepřesností pohybu
