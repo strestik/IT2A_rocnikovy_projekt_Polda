@@ -30,8 +30,8 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         private List<Hotspot> polygons = new List<Hotspot>()
         {
-            new Hotspot("Jumbo", 3, 0.9, "Jumbo"),
-            new Hotspot("Postel", 1.0, 0.5, "Postel")
+            new Hotspot("Jumbo", 1, 1, "Jumbo"),
+            new Hotspot("Postel", 0.5, 1.5, "Postel")
         };
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -50,13 +50,17 @@ namespace IT2A_rocnikovy_projekt_Polda
                 poly.polygon.MouseDown += Polygon_MouseDown;
                 poly.polygon.Tag = poly;
 
-                System.Windows.Point Point1 = new System.Windows.Point(456 * poly.XPercent, 870 * poly.YPercent);
-                System.Windows.Point Point2 = new System.Windows.Point(545 * poly.XPercent, 570 * poly.YPercent);
-                System.Windows.Point Point3 = new System.Windows.Point(50 * poly.XPercent, 550 * poly.YPercent);
+                System.Windows.Point Point1 = new System.Windows.Point(770 * poly.XPercent, 210 * poly.YPercent);
+                System.Windows.Point Point2 = new System.Windows.Point(742 * poly.XPercent, 310 * poly.YPercent);
+                System.Windows.Point Point3 = new System.Windows.Point(746 * poly.XPercent, 513 * poly.YPercent);
+                System.Windows.Point Point4 = new System.Windows.Point(814 * poly.XPercent, 573 * poly.YPercent);
+                System.Windows.Point Point5 = new System.Windows.Point(814 * poly.XPercent, 313 * poly.YPercent);
                 PointCollection myPointCollection = new PointCollection();
                 myPointCollection.Add(Point1);
                 myPointCollection.Add(Point2);
                 myPointCollection.Add(Point3);
+                myPointCollection.Add(Point4);
+                myPointCollection.Add(Point5);
                 poly.polygon.Points = myPointCollection;
                 OverlayCanvas.Children.Add(poly.polygon);
             }
@@ -86,7 +90,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             pankrac.move(xPercent, yPercent);
 
-            //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
+            MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
             //MessageBox.Show($"Tam nic není.");
         }
     }

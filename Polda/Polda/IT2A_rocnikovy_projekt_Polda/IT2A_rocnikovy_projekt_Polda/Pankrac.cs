@@ -75,10 +75,17 @@ namespace IT2A_rocnikovy_projekt_Polda
         //    timer.Tick += Timer_Tick;
         //    timer.Start();
         //}
-        public void move(double targetX, double targetY)
+        public void move(double targetX, double targetY, double speed = 2.5)
         {
-            DoubleAnimation animX = new DoubleAnimation(posX, targetX, TimeSpan.FromSeconds(1));
-            DoubleAnimation animY = new DoubleAnimation(posY, targetY, TimeSpan.FromSeconds(1));
+            if (!double.IsNaN(Canvas.GetLeft(pankrac)))
+                posX = Canvas.GetLeft(pankrac);
+            if (!double.IsNaN(Canvas.GetTop(pankrac)))
+                posY = Canvas.GetTop(pankrac);
+            double deltaX = targetX - posX;
+            double deltaY = targetY - posY;
+            double distance = Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
+            DoubleAnimation animX = new DoubleAnimation(posX, targetX - centerOffsetX, TimeSpan.FromSeconds(speed * distance / 1000)); 
+            DoubleAnimation animY = new DoubleAnimation(posY, targetY - centerOffsetY, TimeSpan.FromSeconds(speed * distance / 1000));
             pankrac.BeginAnimation(Canvas.LeftProperty, animX);
             pankrac.BeginAnimation(Canvas.TopProperty, animY);
         }
