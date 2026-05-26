@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -21,6 +22,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         public double targetY { get; set; }
         public double centerOffsetX { get; set; }
         public double centerOffsetY { get; set; }
+        public double maxAcessableHeight { get; set; } = 890;
 
         public Pankrac(string name, double xPercent, double yPercent, string item = "Empty")
         {
@@ -77,6 +79,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         //}
         public void move(double targetX, double targetY, double speed = 2.5)
         {
+            if (targetY < maxAcessableHeight) targetY = maxAcessableHeight;
             if (!double.IsNaN(Canvas.GetLeft(pankrac)))
                 posX = Canvas.GetLeft(pankrac);
             if (!double.IsNaN(Canvas.GetTop(pankrac)))
