@@ -19,7 +19,7 @@ namespace IT2A_rocnikovy_projekt_Polda
     public partial class MainWindow : Window
     {
         Random rnd = new Random();
-        Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, "Pankrac");
+        Pankrac pankrac = new Pankrac("Pankrac", 300, 900, "Pankrac");
         Inventory inventory = new Inventory();
 
 
@@ -39,6 +39,14 @@ namespace IT2A_rocnikovy_projekt_Polda
         {
             DrawPoints();
             OverlayCanvas.Children.Add(pankrac.pankrac);
+            OverlayCanvas.Children.Add(inventory.invetory);
+            pankrac.pankrac.MouseDown += Pankrac_MouseDown;
+            pankrac.pankrac.Tag = pankrac;
+        }
+
+        private void MapImage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            DrawPoints();
         }
 
     void DrawPoints()
@@ -75,10 +83,12 @@ namespace IT2A_rocnikovy_projekt_Polda
             pankrac.move(point.XPercent, point.YPercent);
 
         }
-
-        private void MapImage_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void Pankrac_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DrawPoints();
+            Image btn = sender as Image;
+            Pankrac point = btn.Tag as Pankrac;
+
+            inventory.VisibilityToggle(pankrac.pankrac);
         }
 
 
