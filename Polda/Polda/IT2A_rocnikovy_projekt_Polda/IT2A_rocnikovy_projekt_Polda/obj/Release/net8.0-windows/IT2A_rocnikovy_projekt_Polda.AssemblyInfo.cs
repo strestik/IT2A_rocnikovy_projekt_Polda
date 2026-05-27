@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IT2A_rocnikovy_projekt_Polda")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9c4c1075f9d03b5eb62720305a66ea73bd3e169")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9662dc9e78538577d37ff144095a887b6838942")]
 [assembly: System.Reflection.AssemblyProductAttribute("IT2A_rocnikovy_projekt_Polda")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IT2A_rocnikovy_projekt_Polda")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

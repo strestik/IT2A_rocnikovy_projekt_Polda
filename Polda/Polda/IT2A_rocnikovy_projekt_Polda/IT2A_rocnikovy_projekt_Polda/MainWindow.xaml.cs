@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Shapes;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using static System.Formats.Asn1.AsnWriter;
+
+namespace IT2A_rocnikovy_projekt_Polda
+{
+    public partial class MainWindow : Window
+    {
+        Random rnd = new Random();
+        Pankrac pankrac = new Pankrac("Pankrac", 0.5, 0.5, "Pankrac");
+        Inventory inventory = new Inventory();
+
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private List<Hotspot> polygons = new List<Hotspot>()
+        {
+            new Hotspot("Jumbo", 1, 1, "Jumbo"),
+            new Hotspot("Postel", 0.5, 1.5, "Postel")
+        };
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            DrawPoints();
+            OverlayCanvas.Children.Add(pankrac.pankrac);
+        }
+
+    void DrawPoints()
+        {
+            OverlayCanvas.Children.Clear();
+
+            foreach (var poly in polygons)
+            {
+                poly.polygon.MouseDown -= Polygon_MouseDown;
+                poly.polygon.MouseDown += Polygon_MouseDown;
+                poly.polygon.Tag = poly;
+
+                System.Windows.Point Point1 = new System.Windows.Point(770 * poly.XPercent, 210 * poly.YPercent);
+                System.Windows.Point Point2 = new System.Windows.Point(742 * poly.XPercent, 310 * poly.YPercent);
+                System.Windows.Point Point3 = new System.Windows.Point(746 * poly.XPercent, 513 * poly.YPercent);
+                System.Windows.Point Point4 = new System.Windows.Point(814 * poly.XPercent, 573 * poly.YPercent);
+                System.Windows.Point Point5 = new System.Windows.Point(814 * poly.XPercent, 313 * poly.YPercent);
+                PointCollection myPointCollection = new PointCollection();
+                myPointCollection.Add(Point1);
+                myPointCollection.Add(Point2);
+                myPointCollection.Add(Point3);
+                myPointCollection.Add(Point4);
+                myPointCollection.Add(Point5);
+                poly.polygon.Points = myPointCollection;
+                OverlayCanvas.Children.Add(poly.polygon);
+            }
+        }
+
+        private void Polygon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Polygon btn = sender as Polygon;
+            Hotspot point = btn.Tag as Hotspot;
+            MessageBox.Show(point.init);
+            pankrac.move(point.XPercent, point.YPercent);
+
+        }
+
+        private void MapImage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            DrawPoints();
+        }
+
+
+        private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var pos = e.GetPosition(MapImage);
+
+            double xPercent = pos.X;
+            double yPercent = pos.Y;
+
+            pankrac.move(xPercent, yPercent);
+
+            //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
+            //MessageBox.Show($"Tam nic není.");
+        }
+    }
+}
