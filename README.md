@@ -20,3 +20,7 @@
 21/5/2026
 ---------
 - Ladění prostředí a pozadí, oprava nepřesností pohybu
+
+27/5/2026
+---------
+- Přidání inventáře a itemů
