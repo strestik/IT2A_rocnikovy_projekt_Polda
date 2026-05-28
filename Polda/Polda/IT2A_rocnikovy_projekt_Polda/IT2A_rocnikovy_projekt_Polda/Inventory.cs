@@ -44,13 +44,15 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             double x = Canvas.GetLeft(InvetoryImage);
             double y = Canvas.GetTop(InvetoryImage);
-            for(int i = 0; i < ImagePositionsX.Length; i++)
+            Console.WriteLine($"x:{x} y:{y}");
+            for (int i = 0; i < ImagePositionsX.Length; i++)
             {
                 if (Items[i] != null)
                 {
                     Canvas.SetLeft(Items[i].ItemImage,x + ImagePositionsX[i]);
                     Canvas.SetTop(Items[i].ItemImage, y);
                     Console.WriteLine(Items[i].Name);
+            
                 }
             }
         }

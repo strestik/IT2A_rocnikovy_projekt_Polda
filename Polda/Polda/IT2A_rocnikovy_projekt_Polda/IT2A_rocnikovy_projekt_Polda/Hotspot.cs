@@ -59,8 +59,8 @@ namespace IT2A_rocnikovy_projekt_Polda
         {
             if (pankrac.init == init)
             {
-                Item item = new Item(init, "Description of " + init, "img/" + init + ".png");
-                inventory.AddItem(item);
+                //Item item = new Item(init, "Description of " + init);
+                //inventory.AddItem(item);
                 pankrac.init = "Empty";
             }
         }

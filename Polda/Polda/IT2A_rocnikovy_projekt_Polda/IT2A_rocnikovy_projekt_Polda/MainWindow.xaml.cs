@@ -19,37 +19,69 @@ namespace IT2A_rocnikovy_projekt_Polda
     public partial class MainWindow : Window
     {
         Random rnd = new Random();
-        Pankrac pankrac = new Pankrac("Pankrac", 300, 900, "Pankrac");
+        Item? heldItem;
+        Pankrac pankrac = new Pankrac("Pankrác Moudrý", 300, 900, "Pankrac");
         Inventory inventory = new Inventory();
 
 
-        public MainWindow()
+        List<Item> items = new List<Item>()
         {
-            InitializeComponent();
-            Loaded += MainWindow_Loaded;
-        }
+            new Item("magická věcička", "Description of wand", "mahou", 100, 100),
+            new Item("staff", "Description of staff", "mahou", 200, 200),
+            new Item("scroll", "Description of scroll", "mahou", 300, 300),
+            new Item("potion", "Description of potion", "mahou", 400, 400)
+        };
 
         private List<Hotspot> polygons = new List<Hotspot>()
         {
             new Hotspot("Jumbo", 1, 1, "Jumbo"),
             new Hotspot("Postel", 0.5, 1.5, "Postel")
         };
+        public MainWindow()
+        {
+            InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DrawPoints();
+            Draw();
+
             OverlayCanvas.Children.Add(pankrac.pankrac);
-            OverlayCanvas.Children.Add(inventory.invetory);
             pankrac.pankrac.MouseDown += Pankrac_MouseDown;
             pankrac.pankrac.Tag = pankrac;
+
+            OverlayCanvas.Children.Add(inventory.InvetoryImage);
+
+            foreach (Item item in items)
+            {
+                item.ItemImage.Tag = item;
+                OverlayCanvas.Children.Add(item.ItemImage);
+                item.ItemImage.MouseDown += Item_MouseDown;
+                item.Show();
+            }
+            inventory.InvetoryImage.MouseDown += Inventory_MouseDown;
+            OverlayCanvas.MouseUp += Item_MouseUp;
+
+            OverlayCanvas.MouseMove += MouseMove;
+        }
+        public void MouseMove(object sender, MouseEventArgs e)
+        {
+            var pos = e.GetPosition(MapImage);
+            if (heldItem != null)
+            {
+                Canvas.SetLeft(heldItem.ItemImage, pos.X);
+                Canvas.SetTop(heldItem.ItemImage, pos.Y);
+            }
         }
 
         private void MapImage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            DrawPoints();
+            Draw();
         }
 
-    void DrawPoints()
+
+        void Draw()
         {
             OverlayCanvas.Children.Clear();
 
@@ -80,7 +112,6 @@ namespace IT2A_rocnikovy_projekt_Polda
             Polygon btn = sender as Polygon;
             Hotspot point = btn.Tag as Hotspot;
             MessageBox.Show(point.init);
-            //pankrac.move(point.XPercent, point.YPercent);
 
         }
         private void Pankrac_MouseDown(object sender, MouseButtonEventArgs e)
@@ -90,8 +121,52 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             inventory.VisibilityToggle(pankrac.pankrac);
         }
+        private void Item_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //var pos = e.GetPosition(MapImage);
 
+            //double xPercent = pos.X;
+            //double yPercent = pos.Y;
+            Image btn = sender as Image;
+            Item point = btn.Tag as Item;
 
+            Mouse.Capture(OverlayCanvas);
+            heldItem = point;
+            if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = false;
+
+        }
+        private void Item_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var pos = e.GetPosition(MapImage);
+
+            double xPercent = pos.X;
+            double yPercent = pos.Y;
+            //Image btn = sender as Image;
+            //Item point = btn.Tag as Item;
+
+            double invLeft = Canvas.GetLeft(inventory.InvetoryImage);
+            double invTop = Canvas.GetTop(inventory.InvetoryImage);
+            if (pos.X > invLeft && pos.X < invLeft + inventory.InvetoryImage.ActualWidth &&
+                pos.Y > invTop && pos.Y < invTop + inventory.InvetoryImage.ActualHeight)
+            {
+                if (heldItem != null)
+                {
+                    heldItem.posX = xPercent;
+                    heldItem.posY = yPercent;
+                    inventory.AddItem(heldItem);
+                    Mouse.Capture(null);
+                    heldItem = null;
+                }
+            }
+        }
+        private void Inventory_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var pos = e.GetPosition(MapImage);
+
+            double xPercent = pos.X;
+            double yPercent = pos.Y;
+            
+        }
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             inventory.VisibilityOff();
@@ -103,7 +178,6 @@ namespace IT2A_rocnikovy_projekt_Polda
             pankrac.move(xPercent, yPercent);
 
             //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
-            //MessageBox.Show($"Tam nic není.");
         }
     }
 }
