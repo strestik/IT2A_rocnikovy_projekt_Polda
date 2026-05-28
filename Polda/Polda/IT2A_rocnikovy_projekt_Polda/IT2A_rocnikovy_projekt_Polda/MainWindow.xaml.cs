@@ -80,7 +80,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             Polygon btn = sender as Polygon;
             Hotspot point = btn.Tag as Hotspot;
             MessageBox.Show(point.init);
-            pankrac.move(point.XPercent, point.YPercent);
+            //pankrac.move(point.XPercent, point.YPercent);
 
         }
         private void Pankrac_MouseDown(object sender, MouseButtonEventArgs e)
@@ -94,6 +94,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            inventory.VisibilityOff();
             var pos = e.GetPosition(MapImage);
 
             double xPercent = pos.X;

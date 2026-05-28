@@ -38,5 +38,31 @@ namespace IT2A_rocnikovy_projekt_Polda
             polygon.HorizontalAlignment = HorizontalAlignment.Left;
             polygon.VerticalAlignment = VerticalAlignment.Center;
         }
+
+        //public void refresh()
+        //{
+        //    System.Windows.Point Point1 = new System.Windows.Point(770 * XPercent, 210 * YPercent);
+        //    System.Windows.Point Point2 = new System.Windows.Point(742 * XPercent, 310 * YPercent);
+        //    System.Windows.Point Point3 = new System.Windows.Point(746 * XPercent, 513 * YPercent);
+        //    System.Windows.Point Point4 = new System.Windows.Point(814 * XPercent, 573 * YPercent);
+        //    System.Windows.Point Point5 = new System.Windows.Point(814 * XPercent, 313 * YPercent);
+        //    PointCollection myPointCollection = new PointCollection();
+        //    myPointCollection.Add(Point1);
+        //    myPointCollection.Add(Point2);
+        //    myPointCollection.Add(Point3);
+        //    myPointCollection.Add(Point4);
+        //    myPointCollection.Add(Point5);
+        //    polygon.Points = myPointCollection;
+        //}
+
+        public void GiveItem(Pankrac pankrac, Inventory inventory)
+        {
+            if (pankrac.init == init)
+            {
+                Item item = new Item(init, "Description of " + init, "img/" + init + ".png");
+                inventory.AddItem(item);
+                pankrac.init = "Empty";
+            }
+        }
     }
 }

@@ -13,16 +13,18 @@ namespace IT2A_rocnikovy_projekt_Polda
 {
     internal class Inventory
     {
-        public Image invetory { get; set; }
+        public Image InvetoryImage { get; set; }
         public List<Item?> Items { get; set; }
+        //public Item? _item { get; set; }
+        public int[] ImagePositionsX = new int[] { -240, -80, 80, 240 };
 
         public Inventory()
         {
             Items = new List<Item?> { null, null, null, null };
-            invetory = new Image();
-            invetory.Source = new BitmapImage(new Uri("img/inventary.png", UriKind.Relative));
+            InvetoryImage = new Image();
+            InvetoryImage.Source = new BitmapImage(new Uri("img/inventary.png", UriKind.Relative));
             // Set invisible at spawn
-            invetory.Visibility = Visibility.Collapsed;
+            InvetoryImage.Visibility = Visibility.Collapsed;
         }
 
         public void AddItem(Item item)
@@ -39,6 +41,18 @@ namespace IT2A_rocnikovy_projekt_Polda
                     break;
                 }
             }
+
+            double x = Canvas.GetLeft(InvetoryImage);
+            double y = Canvas.GetTop(InvetoryImage);
+            for(int i = 0; i < ImagePositionsX.Length; i++)
+            {
+                if (Items[i] != null)
+                {
+                    Canvas.SetLeft(Items[i].ItemImage,x + ImagePositionsX[i]);
+                    Canvas.SetTop(Items[i].ItemImage, y);
+                    Console.WriteLine(Items[i].Name);
+                }
+            }
         }
         
         public void RemoveItem(Item item) {
@@ -52,21 +66,26 @@ namespace IT2A_rocnikovy_projekt_Polda
             }
         }
 
+
         public void VisibilityToggle(Image pos)
         {
             double x = Canvas.GetLeft(pos);
             double y = Canvas.GetTop(pos);
 
-            if (invetory.Visibility == Visibility.Visible)
-                invetory.Visibility = Visibility.Collapsed;
+            if (InvetoryImage.Visibility == Visibility.Visible)
+                InvetoryImage.Visibility = Visibility.Collapsed;
             else
             {
                 // add posible positioning so it doesnt go out of bounds
-                Canvas.SetLeft(invetory, x + 100);
-                Canvas.SetTop(invetory, y - 200);
-                invetory.Visibility = Visibility.Visible;
+                Canvas.SetLeft(InvetoryImage, x + 100);
+                Canvas.SetTop(InvetoryImage, y - 200);
+                InvetoryImage.Visibility = Visibility.Visible;
             }
         }
 
+        public void VisibilityOff()
+        {
+            InvetoryImage.Visibility = Visibility.Collapsed;
+        }   
     }
 }
