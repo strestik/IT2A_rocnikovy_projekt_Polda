@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using static System.Formats.Asn1.AsnWriter;
+using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace IT2A_rocnikovy_projekt_Polda
 {
@@ -121,28 +123,50 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             inventory.VisibilityToggle(pankrac.pankrac);
         }
+
+
+        public DateTime timer;
+        public void Timer_Check()
+        {
+            if ((DateTime.Now - timer).TotalSeconds > 2 && heldItem != null)
+            {
+                heldItem.ItemImage.IsHitTestVisible = true;
+                Mouse.Capture(null);
+                heldItem.JumpToSpawn();
+                heldItem = null;
+
+            }
+        }
         private void Item_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //var pos = e.GetPosition(MapImage);
 
             //double xPercent = pos.X;
             //double yPercent = pos.Y;
+
+
+            timer = DateTime.Now;
+            if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = true;
             Image btn = sender as Image;
             Item point = btn.Tag as Item;
 
             Mouse.Capture(OverlayCanvas);
             heldItem = point;
+            Canvas.SetZIndex(heldItem.ItemImage, 999);
+            inventory.RemoveItem(heldItem);
             if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = false;
 
         }
         private void Item_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            Timer_Check();
             var pos = e.GetPosition(MapImage);
 
             double xPercent = pos.X;
             double yPercent = pos.Y;
             //Image btn = sender as Image;
             //Item point = btn.Tag as Item;
+
 
             double invLeft = Canvas.GetLeft(inventory.InvetoryImage);
             double invTop = Canvas.GetTop(inventory.InvetoryImage);
@@ -151,10 +175,10 @@ namespace IT2A_rocnikovy_projekt_Polda
             {
                 if (heldItem != null)
                 {
-                    heldItem.posX = xPercent;
-                    heldItem.posY = yPercent;
-                    inventory.AddItem(heldItem);
+                    if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = true;
                     Mouse.Capture(null);
+                    inventory.AddItem(heldItem);
+                    Canvas.SetZIndex(heldItem.ItemImage, 0);
                     heldItem = null;
                 }
             }
@@ -169,8 +193,8 @@ namespace IT2A_rocnikovy_projekt_Polda
         }
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            inventory.VisibilityOff();
-            var pos = e.GetPosition(MapImage);
+            inventory.VisibilityOff((pankrac.pankrac));
+            var pos = e.GetPosition(MapImage);  
 
             double xPercent = pos.X;
             double yPercent = pos.Y;

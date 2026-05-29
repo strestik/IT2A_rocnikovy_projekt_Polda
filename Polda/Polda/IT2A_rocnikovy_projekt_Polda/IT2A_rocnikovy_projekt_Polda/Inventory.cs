@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         public Image InvetoryImage { get; set; }
         public List<Item?> Items { get; set; }
         //public Item? _item { get; set; }
-        public int[] ImagePositionsX = new int[] { -240, -80, 80, 240 };
+        public int[] ImagePositionsX = new int[] { 0, 160, 320, 480 };
 
         public Inventory()
         {
@@ -42,21 +43,25 @@ namespace IT2A_rocnikovy_projekt_Polda
                 }
             }
 
+            UpdateItemPositions();
+        }
+        private void UpdateItemPositions()
+        {
             double x = Canvas.GetLeft(InvetoryImage);
             double y = Canvas.GetTop(InvetoryImage);
-            Console.WriteLine($"x:{x} y:{y}");
+            ////Trace.WriteLine($"x:{x} y:{y}");
             for (int i = 0; i < ImagePositionsX.Length; i++)
             {
                 if (Items[i] != null)
                 {
-                    Canvas.SetLeft(Items[i].ItemImage,x + ImagePositionsX[i]);
+                    Canvas.SetLeft(Items[i].ItemImage, x + ImagePositionsX[i]);
                     Canvas.SetTop(Items[i].ItemImage, y);
-                    Console.WriteLine(Items[i].Name);
-            
+                    //Trace.WriteLine(Items[i].Name);
+                    //Trace.WriteLine(string.Join(", ", Items.Select((item, index) => item != null ? $"Slot {index}: {item.Name}" : $"Slot {index}: Empty")));
                 }
             }
         }
-        
+
         public void RemoveItem(Item item) {
             for (int i = 0; i < Items.Count; i++)
             {
@@ -71,6 +76,22 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         public void VisibilityToggle(Image pos)
         {
+            for (int i = 0; i < ImagePositionsX.Length; i++)
+            {
+                if (Items[i] != null)
+                {
+                    if (Items[i].IsVisible)
+                    {
+                        Items[i].ItemImage.Visibility = Visibility.Collapsed;
+                    }
+                    else if (!Items[i].IsVisible)
+                    {
+                        Items[i].ItemImage.Visibility = Visibility.Visible;
+                    }
+                }
+            }
+
+                
             double x = Canvas.GetLeft(pos);
             double y = Canvas.GetTop(pos);
 
@@ -78,16 +99,36 @@ namespace IT2A_rocnikovy_projekt_Polda
                 InvetoryImage.Visibility = Visibility.Collapsed;
             else
             {
-                // add posible positioning so it doesnt go out of bounds
-                Canvas.SetLeft(InvetoryImage, x + 100);
-                Canvas.SetTop(InvetoryImage, y - 200);
+                if (x > 1200)
+                {
+                    Canvas.SetLeft(InvetoryImage, x - 700);
+                    Canvas.SetTop(InvetoryImage, y - 200);
+                }
+                else
+                {
+                    Canvas.SetLeft(InvetoryImage, x + 100);
+                    Canvas.SetTop(InvetoryImage, y - 200);
+                }
+                
+
+                UpdateItemPositions();
                 InvetoryImage.Visibility = Visibility.Visible;
             }
         }
 
-        public void VisibilityOff()
+        public void VisibilityOff(Image pos)
         {
             InvetoryImage.Visibility = Visibility.Collapsed;
+            for (int i = 0; i < ImagePositionsX.Length; i++)
+            {
+                if (Items[i] != null)
+                {
+                    if (Items[i].IsVisible)
+                    {
+                        Items[i].ItemImage.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
         }   
     }
 }

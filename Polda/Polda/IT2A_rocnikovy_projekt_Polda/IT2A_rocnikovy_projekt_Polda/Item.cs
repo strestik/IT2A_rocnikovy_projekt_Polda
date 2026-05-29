@@ -31,6 +31,12 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         public void Show() { ItemImage.Visibility = Visibility.Visible; }
 
+        public void JumpToSpawn()
+        {
+            Canvas.SetLeft(ItemImage, posX);
+            Canvas.SetTop(ItemImage, posY);
+        }
+
         
     }
 }
