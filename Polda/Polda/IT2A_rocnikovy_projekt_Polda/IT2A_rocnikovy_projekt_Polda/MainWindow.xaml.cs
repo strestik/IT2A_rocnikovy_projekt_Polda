@@ -30,7 +30,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         {
             new Item("magická věcička", "Description of wand", "mahou", 100, 100),
             new Item("staff", "Description of staff", "mahou", 200, 200),
-            new Item("scroll", "Description of scroll", "mahou", 300, 300),
+            new Item("scroll", "Description of scroll", "scroll", 300, 300),
             new Item("potion", "Description of potion", "mahou", 400, 400)
         };
 
