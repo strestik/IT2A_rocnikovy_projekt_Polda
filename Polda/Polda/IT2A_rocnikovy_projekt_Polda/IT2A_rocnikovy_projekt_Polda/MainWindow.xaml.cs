@@ -28,11 +28,14 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         List<Item> items = new List<Item>()
         {
-            new Item("magická věcička", "Description of wand", "mahou", 100, 100),
-            new Item("staff", "Description of staff", "mahou", 200, 200),
-            new Item("scroll", "Description of scroll", "scroll", 300, 300),
-            new Item("potion", "Description of potion", "mahou", 400, 400)
-        };
+            new Item("magická věcička", "Description of wand", "mahou", 100, 100, true),
+            new Item("sefirot", "Description of sefirot", "sefirot", 200, 200, true),
+            new Item("space scroll", "Description of scroll", "scrollS", 300, 300, true),
+            new Item("time scroll", "Description of scroll", "scrollT", 350, 350, true),
+            new Item("potion", "Description of potion", "potion", 400, 400, true),
+            new Item("grimoire", "Description of grimoire", "grimoire", 500, 500, true),
+            new Item("textile", "Description of textile", "textil", 600, 600, false)
+        }; 
 
         private List<Hotspot> polygons = new List<Hotspot>()
         {
@@ -145,25 +148,28 @@ namespace IT2A_rocnikovy_projekt_Polda
             //double yPercent = pos.Y;
 
 
-            timer = DateTime.Now;
             if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = true;
             Image btn = sender as Image;
             Item point = btn.Tag as Item;
 
+            if (!heldItem.Collectable) return;
             Mouse.Capture(OverlayCanvas);
             heldItem = point;
             Canvas.SetZIndex(heldItem.ItemImage, 999);
             inventory.RemoveItem(heldItem);
             if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = false;
+            timer = DateTime.Now;
 
         }
+
         private void Item_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Timer_Check();
+            timer = DateTime.Now;
             var pos = e.GetPosition(MapImage);
 
-            double xPercent = pos.X;
-            double yPercent = pos.Y;
+            //double xPercent = pos.X;
+            //double yPercent = pos.Y;
             //Image btn = sender as Image;
             //Item point = btn.Tag as Item;
 
@@ -173,7 +179,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             if (pos.X > invLeft && pos.X < invLeft + inventory.InvetoryImage.ActualWidth &&
                 pos.Y > invTop && pos.Y < invTop + inventory.InvetoryImage.ActualHeight)
             {
-                if (heldItem != null)
+                if (heldItem != null && heldItem.Collectable)
                 {
                     if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = true;
                     Mouse.Capture(null);

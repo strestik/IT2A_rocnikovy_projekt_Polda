@@ -16,7 +16,8 @@ namespace IT2A_rocnikovy_projekt_Polda
         public bool IsVisible { get { return ItemImage.Visibility == Visibility.Visible; } }
         public double posX { get; set; }
         public double posY { get; set; }
-        public Item(string name, string description, string imagePath, double positionX, double positionY)
+        public bool Collectable { get; set; }
+        public Item(string name, string description, string imagePath, double positionX, double positionY, bool collectable)
         {
             Name = name;
             Description = description;
@@ -27,6 +28,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             ItemImage.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri($"img/{imagePath}.png", UriKind.Relative));
             Canvas.SetLeft(ItemImage, posX);
             Canvas.SetTop(ItemImage, posY);
+            Collectable = collectable;
         }
 
         public void Show() { ItemImage.Visibility = Visibility.Visible; }

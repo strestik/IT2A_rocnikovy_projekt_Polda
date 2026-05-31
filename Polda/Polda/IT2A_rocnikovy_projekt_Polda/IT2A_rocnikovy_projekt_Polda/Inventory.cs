@@ -32,6 +32,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         {
             if (Items.Count(i => i != null) >= 4)
             {
+                item.JumpToSpawn();
                 return;
             }
             for (int i = 0; i < Items.Count; i++)
