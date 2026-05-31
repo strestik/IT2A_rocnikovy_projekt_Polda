@@ -10,7 +10,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Image Name="MapImage"
-       Source="/img/untitled.png"
+       Source="/img/room.png"
        Stretch="Fill"
        MouseDown="MapImage_MouseDown"/>
 

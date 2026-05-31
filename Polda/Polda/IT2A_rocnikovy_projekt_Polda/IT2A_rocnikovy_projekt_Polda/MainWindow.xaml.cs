@@ -35,6 +35,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             new Item("potion", "Description of potion", "potion", 400, 400, true),
             new Item("grimoire", "Description of grimoire", "grimoire", 500, 500, true),
             new Item("textile", "Description of textile", "textil", 600, 600, false), // gets collectable after player becomes aware of key logic
+            new Item("broken potion", "Description of broken potion", "broken", 1000, 700, false),
         }; 
 
         private List<Hotspot> polygons = new List<Hotspot>()

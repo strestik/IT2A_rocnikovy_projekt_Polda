@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="img\back.jpg" />
     <None Remove="img\Bez názvu.png" />
+    <None Remove="img\broken.png" />
     <None Remove="img\grimoire.png" />
     <None Remove="img\inventary.png" />
     <None Remove="img\lowPolda.png" />
@@ -19,6 +20,7 @@
     <None Remove="img\Polda.png" />
     <None Remove="img\potion.png" />
     <None Remove="img\poza.pxo" />
+    <None Remove="img\room.png" />
     <None Remove="img\scroll.png" />
     <None Remove="img\scrollS.png" />
     <None Remove="img\scrollT.png" />
@@ -29,6 +31,9 @@
 
   <ItemGroup>
     <Resource Include="img\Bez názvu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\broken.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\grimoire.png">
@@ -44,6 +49,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\potion.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\room.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\scrollS.png">
