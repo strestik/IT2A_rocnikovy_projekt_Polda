@@ -34,7 +34,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             new Item("time scroll", "Description of scroll", "scrollT", 350, 350, true),
             new Item("potion", "Description of potion", "potion", 400, 400, true),
             new Item("grimoire", "Description of grimoire", "grimoire", 500, 500, true),
-            new Item("textile", "Description of textile", "textil", 600, 600, false)
+            new Item("textile", "Description of textile", "textil", 600, 600, false), // gets collectable after player becomes aware of key logic
         }; 
 
         private List<Hotspot> polygons = new List<Hotspot>()
@@ -152,13 +152,21 @@ namespace IT2A_rocnikovy_projekt_Polda
             Image btn = sender as Image;
             Item point = btn.Tag as Item;
 
-            if (!heldItem.Collectable) return;
             Mouse.Capture(OverlayCanvas);
             heldItem = point;
-            Canvas.SetZIndex(heldItem.ItemImage, 999);
-            inventory.RemoveItem(heldItem);
-            if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = false;
-            timer = DateTime.Now;
+            if (heldItem.Collectable)
+            {
+                Canvas.SetZIndex(heldItem.ItemImage, 999);
+                inventory.RemoveItem(heldItem);
+                if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = false;
+                timer = DateTime.Now;
+            }
+            else
+            {
+                heldItem = null;
+                Mouse.Capture(null);
+            }
+            
 
         }
 

@@ -46,8 +46,7 @@
               "RelativeToolTip": "IT2A_rocnikovy_projekt_Polda\\Item.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAwBMAAAB7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T20:43:41.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T20:43:41.694Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "IT2A_rocnikovy_projekt_Polda\\Inventory.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAiwCIAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T20:43:42.468Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T20:43:42.468Z"
             },
             {
               "$type": "Document",
@@ -72,8 +70,7 @@
               "RelativeToolTip": "IT2A_rocnikovy_projekt_Polda\\Pankrac.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAswEwAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T20:36:13.11Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T20:36:13.11Z"
             },
             {
               "$type": "Document",
@@ -93,9 +90,9 @@
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs*",
-              "RelativeToolTip": "IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs*",
-              "ViewState": "AgIAAIgAAAAAAAAAAAAiwJoAAAAuAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs",
+              "RelativeToolTip": "IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAAACcAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-27T20:43:57.1Z",
               "EditorCaption": ""
@@ -109,8 +106,7 @@
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml",
               "RelativeToolTip": "IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-27T20:43:37.512Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T20:43:37.512Z"
             }
           ]
         }
