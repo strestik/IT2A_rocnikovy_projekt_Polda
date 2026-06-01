@@ -17,14 +17,15 @@ namespace IT2A_rocnikovy_projekt_Polda
         public double posX { get; set; }
         public double posY { get; set; }
         public bool Collectable { get; set; }
-        public Item(string name, string description, string imagePath, double positionX, double positionY, bool collectable)
+        public Item(string name, string description, string imagePath, double positionX, double positionY, bool collectable, bool isVisible = true)
         {
             Name = name;
             Description = description;
             posX = positionX;
             posY = positionY;
             ItemImage = new Image();
-            ItemImage.Visibility = Visibility.Collapsed;
+            ItemImage.Visibility = Visibility.Visible;
+            if (!isVisible) ItemImage.Visibility = Visibility.Collapsed;
             ItemImage.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri($"img/{imagePath}.png", UriKind.Relative));
             Canvas.SetLeft(ItemImage, posX);
             Canvas.SetTop(ItemImage, posY);

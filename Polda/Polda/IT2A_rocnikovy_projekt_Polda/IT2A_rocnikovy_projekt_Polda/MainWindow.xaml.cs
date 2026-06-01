@@ -28,15 +28,15 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         List<Item> items = new List<Item>()
         {
-            new Item("magická věcička", "Description of wand", "mahou", 100, 100, true),
-            new Item("sefirot", "Description of sefirot", "sefirot", 200, 200, true),
-            new Item("space scroll", "Description of scroll", "scrollS", 300, 300, true),
-            new Item("time scroll", "Description of scroll", "scrollT", 350, 350, true),
-            new Item("potion", "Description of potion", "potion", 400, 400, true),
-            new Item("grimoire", "Description of grimoire", "grimoire", 500, 500, true),
-            new Item("textile", "Description of textile", "textil", 600, 600, false), // gets collectable after player becomes aware of key logic
-            new Item("broken potion", "Description of broken potion", "broken", 1000, 700, false),
-        }; 
+            new Item("magická věcička", "Description of wand", "mahou", 862, 758, false, false),
+            new Item("sefirot", "Description of sefirot", "sefirot", 93, 138, true),
+            new Item("space scroll", "Description of scroll", "scrollS", 1384, 164, true),
+            new Item("time scroll", "Description of scroll", "scrollT", 1674, 360, true),
+            new Item("potion", "Description of potion", "potion", 484, 523, true),
+            new Item("grimoire", "Description of grimoire", "grimoire", 1195, 638, true),
+            new Item("textile", "Description of textile", "textil", 1770, 941, false), // gets collectable after player becomes aware of key logic
+            new Item("broken potion", "Description of broken potion", "broken", 1108, 893, false),
+        };
 
         private List<Hotspot> polygons = new List<Hotspot>()
         {
@@ -64,7 +64,6 @@ namespace IT2A_rocnikovy_projekt_Polda
                 item.ItemImage.Tag = item;
                 OverlayCanvas.Children.Add(item.ItemImage);
                 item.ItemImage.MouseDown += Item_MouseDown;
-                item.Show();
             }
             inventory.InvetoryImage.MouseDown += Inventory_MouseDown;
             OverlayCanvas.MouseUp += Item_MouseUp;
@@ -216,7 +215,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             pankrac.move(xPercent, yPercent);
 
-            //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
+            MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
         }
     }
 }
