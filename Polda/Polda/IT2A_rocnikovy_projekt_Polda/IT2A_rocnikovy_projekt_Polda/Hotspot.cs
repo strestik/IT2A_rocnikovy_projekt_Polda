@@ -19,25 +19,69 @@ namespace IT2A_rocnikovy_projekt_Polda
     internal class Hotspot
     {
         public string Name { get; set; }
-        public double XPercent { get; set; }
-        public double YPercent { get; set; }
+        public double XPercent0 { get; set; }
+        public double YPercent0 { get; set; }
+        public double XPercent1 { get; set; }
+        public double YPercent1 { get; set; }
+        public double XPercent2 { get; set; }
+        public double YPercent2 { get; set; }
+        public double XPercent3 { get; set; }
+        public double YPercent3 { get; set; }
+        public double XPercent4 { get; set; }
+        public double YPercent4 { get; set; }
         public string init { get; set; }
         public Polygon polygon { get; set; } = new Polygon();
 
 
-        public Hotspot(string name, double xPercent, double yPercent, string item = "Empty", System.Windows.Media.Brush stroke = null, double strokeThickness = 1)
+        public Hotspot(string name, double xPercent0, double yPercent0, string item = "Empty", double xPercent1 = 0, double yPercent1 = 0, 
+            double xPercent2 = 0, double yPercent2 = 0, double xPercent3 = 0, double yPercent3 = 0, double xPercent4 = 0, double yPercent4 = 0, 
+             System.Windows.Media.Brush stroke = null, double strokeThickness = 1)
         {
             Name = name;
-            XPercent = xPercent;
-            YPercent = yPercent;
+            XPercent0 = xPercent0;
+            YPercent0 = yPercent0;
+            XPercent1 = xPercent1 != 0 ? xPercent1 : xPercent0;
+            YPercent1 = yPercent1 != 0 ? yPercent1 : yPercent0;
+            XPercent2 = xPercent2 != 0 ? xPercent2 : xPercent1;
+            YPercent2 = yPercent2 != 0 ? yPercent2 : yPercent1;
+            XPercent3 = xPercent3 != 0 ? xPercent3 : xPercent2;
+            YPercent3 = yPercent3 != 0 ? yPercent3 : yPercent2;
+            XPercent4 = xPercent4 != 0 ? xPercent4 : xPercent3;
+            YPercent4 = yPercent4 != 0 ? yPercent4 : yPercent3;
             init = item;
 
-            polygon.Stroke = stroke ?? System.Windows.Media.Brushes.Red;
+            //polygon.Stroke = stroke ?? System.Windows.Media.Brushes.Red;
             polygon.Fill = System.Windows.Media.Brushes.Transparent;
             polygon.StrokeThickness = strokeThickness;
             polygon.HorizontalAlignment = HorizontalAlignment.Left;
             polygon.VerticalAlignment = VerticalAlignment.Center;
         }
+
+        //void Draw()
+        //{
+        //    OverlayCanvas.Children.Clear();
+
+        //    foreach (var poly in polygons)
+        //    {
+        //        poly.polygon.MouseDown -= Polygon_MouseDown;
+        //        poly.polygon.MouseDown += Polygon_MouseDown;
+        //        poly.polygon.Tag = poly;
+
+        //        System.Windows.Point Point1 = new System.Windows.Point(poly.XPercent, poly.YPercent);
+        //        System.Windows.Point Point2 = new System.Windows.Point(poly.XPercent, poly.YPercent);
+        //        System.Windows.Point Point3 = new System.Windows.Point(poly.XPercent, poly.YPercent);
+        //        System.Windows.Point Point4 = new System.Windows.Point(poly.XPercent, poly.YPercent);
+        //        System.Windows.Point Point5 = new System.Windows.Point(poly.XPercent, poly.YPercent);
+        //        PointCollection myPointCollection = new PointCollection();
+        //        myPointCollection.Add(Point1);
+        //        myPointCollection.Add(Point2);
+        //        myPointCollection.Add(Point3);
+        //        myPointCollection.Add(Point4);
+        //        myPointCollection.Add(Point5);
+        //        poly.polygon.Points = myPointCollection;
+        //        OverlayCanvas.Children.Add(poly.polygon);
+        //    }
+        //}
 
         //public void refresh()
         //{

@@ -17,7 +17,9 @@ namespace IT2A_rocnikovy_projekt_Polda
         public double posX { get; set; }
         public double posY { get; set; }
         public bool Collectable { get; set; }
-        public Item(string name, string description, string imagePath, double positionX, double positionY, bool collectable, bool isVisible = true)
+        public double RelativePosX { get; set; }
+        public double RelativePosY { get; set; }
+        public Item(string name, string description, string imagePath, double positionX, double positionY, bool collectable, bool isVisible = true, double relativePosX = 0, double relativePosY = 0)
         {
             Name = name;
             Description = description;
@@ -30,6 +32,8 @@ namespace IT2A_rocnikovy_projekt_Polda
             Canvas.SetLeft(ItemImage, posX);
             Canvas.SetTop(ItemImage, posY);
             Collectable = collectable;
+            RelativePosX = relativePosX;
+            RelativePosY = relativePosY;
         }
 
         public void Show() { ItemImage.Visibility = Visibility.Visible; }

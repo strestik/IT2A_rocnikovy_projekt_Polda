@@ -100,14 +100,14 @@ namespace IT2A_rocnikovy_projekt_Polda
                 InvetoryImage.Visibility = Visibility.Collapsed;
             else
             {
-                if (x > 1200)
+                if (x > 1100)
                 {
-                    Canvas.SetLeft(InvetoryImage, x - 700);
+                    Canvas.SetLeft(InvetoryImage, x - 500);
                     Canvas.SetTop(InvetoryImage, y - 200);
                 }
                 else
                 {
-                    Canvas.SetLeft(InvetoryImage, x + 100);
+                    Canvas.SetLeft(InvetoryImage, x + 200);
                     Canvas.SetTop(InvetoryImage, y - 200);
                 }
                 

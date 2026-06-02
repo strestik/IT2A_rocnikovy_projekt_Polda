@@ -22,7 +22,9 @@ namespace IT2A_rocnikovy_projekt_Polda
         public double targetY { get; set; }
         public double centerOffsetX { get; set; }
         public double centerOffsetY { get; set; }
-        public double maxAcessableHeight { get; set; } = 890;
+        public double maxAcessableHeight { get; set; } = 770;
+        public double maxAcessableWidth { get; set; } = 238;
+        public double minAcessableWidth { get; set; } = 338;
 
         public Pankrac(string name, double xPercent, double yPercent, string item = "Empty")
         {
@@ -31,11 +33,11 @@ namespace IT2A_rocnikovy_projekt_Polda
             posY = yPercent;
             pankrac = new Image();
             init = item;
-            pankrac.Source = new BitmapImage(new Uri("img/lowPolda.png", UriKind.Relative));
+            pankrac.Source = new BitmapImage(new Uri("img/char.png", UriKind.Relative));
             pankrac.Loaded += (s, e) =>
             {
                 centerOffsetX = pankrac.ActualWidth / 2;
-                centerOffsetY = pankrac.ActualHeight / 2;
+                centerOffsetY = 9 * pankrac.ActualHeight / 10;
             };
         }
 
@@ -80,6 +82,9 @@ namespace IT2A_rocnikovy_projekt_Polda
         public void move(double targetX, double targetY, double speed = 2.5)
         {
             if (targetY < maxAcessableHeight) targetY = maxAcessableHeight;
+            //if (targetX > maxAcessableWidth && targetY > maxAcessableHeight + 100) targetX = maxAcessableWidth;
+            //if (targetX < minAcessableWidth && targetY < maxAcessableHeight + 100) targetX = minAcessableWidth;
+
             if (!double.IsNaN(Canvas.GetLeft(pankrac)))
                 posX = Canvas.GetLeft(pankrac);
             if (!double.IsNaN(Canvas.GetTop(pankrac)))
@@ -87,7 +92,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             double deltaX = targetX - posX;
             double deltaY = targetY - posY;
             double distance = Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
-            DoubleAnimation animX = new DoubleAnimation(posX, targetX - centerOffsetX, TimeSpan.FromSeconds(speed * distance / 1000)); 
+            DoubleAnimation animX = new DoubleAnimation(posX , targetX - centerOffsetX, TimeSpan.FromSeconds(speed * distance / 1000)); 
             DoubleAnimation animY = new DoubleAnimation(posY, targetY - centerOffsetY, TimeSpan.FromSeconds(speed * distance / 1000));
             pankrac.BeginAnimation(Canvas.LeftProperty, animX);
             pankrac.BeginAnimation(Canvas.TopProperty, animY);
