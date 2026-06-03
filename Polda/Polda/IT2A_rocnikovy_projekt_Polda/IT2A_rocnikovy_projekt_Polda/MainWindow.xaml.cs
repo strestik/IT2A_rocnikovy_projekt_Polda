@@ -22,30 +22,33 @@ namespace IT2A_rocnikovy_projekt_Polda
     {
         Random rnd = new Random();
         Item? heldItem;
-        Pankrac pankrac = new Pankrac("Pankrác Moudrý", 300, 900, "Pankrac");
+        Pankrac pankrac = new Pankrac("Pankrác Moudrý", 0, 0, "Pankrac");
         Inventory inventory = new Inventory();
 
 
         List<Item> items = new List<Item>()
         {
-            new Item("magická věcička", "Description of wand", "mahou", 862, 758, false, false),
-            new Item("sefirot", "Description of sefirot", "sefirot", 93, 138, true),
-            new Item("space scroll", "Description of scroll", "scrollS", 1384, 164, true),
-            new Item("time scroll", "Description of scroll", "scrollT", 1674, 360, true),
-            new Item("potion", "Description of potion", "potion", 484, 523, true),
-            new Item("grimoire", "Description of grimoire", "grimoire", 1195, 638, true),
-            new Item("textile", "Description of textile", "textil", 1770, 941, false), // gets collectable after player becomes aware of key logic
-            new Item("broken potion", "Description of broken potion", "broken", 1108, 893, false),
+            new Item("Palantír", "Nepředstavitelně magický vidoucí kámen který ruší všechnu aktivní magii.", "mahou", 862, 758, false, false),
+            new Item("Sefirot", "Sefirot, je mocné magické jádro překypující přírodní magií.", "sefirot", 79, 143, true),
+            new Item("Svitek prostoru", "Text schopen ovládnutí prostoru v malém okolí.", "scrollS", 1425, 186, true),
+            new Item("Svitek času", "Text s mocí ovládnout čas určeného objektu.", "scrollT", 1727, 377, true),
+            new Item("Lektvar divoké magie.", "Tento jektvar je vytvořen smícháním kočičího chlupu a baziliščího jedu, těch nejmagičtějších látek.", "potion", 484, 523, true),
+            new Item("Grimoire", "Mocný magický svazek obsahující významná kouzla schopná rozpoutat i ty nejsilnější procesy.", "grimoire", 1195, 638, true),
+            new Item("Cár pláště", "Kus mágova pláště, utrženém ve spěchu.", "textil", 1770, 941, false), // gets collectable after player becomes aware of key logic
+            new Item("Rozbitý lektvar", "Vipadá to jako čerstvě uvařený a ještě čerstvěji roztříštěný lektvar.", "broken", 1108, 893, false),
         };
 
         private List<Hotspot> polygons = new List<Hotspot>()
         {
-            new Hotspot("Magický inkust", 966, 902, "Magický inkust", 963, 872, 946, 872, 921, 885, 920, 901),
-            new Hotspot("Alechemistická apartatura",  5, 476, "Alechemická apartatura", 2, 635, 498, 655, 472, 462, 292, 346),
-            new Hotspot("Instrukce rituálu",  861, 626, "Instrukce rituálu", 1272, 626, 1303, 128, 886, 126),
-            new Hotspot("Rozbitý lektvar",  1120, 1057, "Rozbitý lektvar", 1228, 1054, 1240, 1012, 1198, 926, 1127, 994),
-            new Hotspot("Cár pláště",  1912, 939, "Cár pláště", 1817, 944, 1570, 1769, 1916, 1069),
-            new Hotspot("Podezřelé stopy",  1384, 988, "Podezřelé stopy", 1554, 854, 1874, 859, 1735, 999),
+            new Hotspot("Magický inkust", true, 966, 902, "Magický inkust je běžně užit u smluv vázaných poutací magií.", 963, 872, 946, 872, 921, 885, 920, 901),
+            new Hotspot("Alechemistická apartatura", false,  5, 476, "Alechemická apartatura", 2, 635, 498, 655, 472, 462, 292, 346),
+            new Hotspot("Instrukce rituálu", true,  861, 626, "Instrukce rituálu", 1272, 626, 1303, 128, 886, 126),
+            new Hotspot("Rozbitý lektvar", true,  1120, 1057, "Rozbitý lektvar", 1228, 1054, 1240, 1012, 1198, 926, 1127, 994),
+            new Hotspot("Cár pláště", true,  1912, 939, "Cár pláště", 1817, 944, 1570, 1769, 1916, 1069),
+            new Hotspot("Podezřelé stopy", true,  1384, 988, "Nejspíše úniková cesta hledaného zloděje. Vedou do prázdna takže se musel teleportovat pryč.", 1554, 854, 1874, 859, 1735, 999),
+            // magický kruh Pečeť je pasivní kouzlo schopné schraňovt vybraný objekt mimo dosah našich protor.
+            // add hotspot for every thing on návod
+            // add hotspot for all five ingredients of ritual
         };
         public MainWindow()
         {
@@ -61,6 +64,8 @@ namespace IT2A_rocnikovy_projekt_Polda
             Canvas.SetZIndex(pankrac.pankrac, 997);
             pankrac.pankrac.MouseDown += Pankrac_MouseDown;
             pankrac.pankrac.Tag = pankrac;
+            Canvas.SetLeft(pankrac.pankrac, -200);
+            Canvas.SetTop(pankrac.pankrac, 600);
 
             OverlayCanvas.Children.Add(inventory.InvetoryImage);
             Canvas.SetZIndex(inventory.InvetoryImage, 1);
@@ -123,8 +128,25 @@ namespace IT2A_rocnikovy_projekt_Polda
         {
             Polygon btn = sender as Polygon;
             Hotspot point = btn.Tag as Hotspot;
-            MessageBox.Show(point.init);
 
+            if (point.Name == "Rozbitý lektvar" && !polygons[1].acessable )
+            {
+                polygons[1].acessable = true;
+                MessageBox.Show("Kde se tady asi tak vzal? Vipadá to že budu potřebovat nový, z tohohle už moc nezbývá.");
+            }
+            if (point.Name == "Alechemistická apartatura" && point.acessable)
+            {
+                items[7].Collectable = true;
+                if (polygons.Count > 3)
+                {
+                    Hotspot target = polygons[3];
+                    if (target?.polygon != null)  OverlayCanvas.Children.Remove(target.polygon);
+                }
+                MessageBox.Show("Ahhaa - tak tady se dělají lektvary!");
+            }
+
+
+            MessageBox.Show(point.init);
         }
         private void Pankrac_MouseDown(object sender, MouseButtonEventArgs e)
         {
