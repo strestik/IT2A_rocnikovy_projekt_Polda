@@ -14,8 +14,8 @@ namespace IT2A_rocnikovy_projekt_Polda
     internal class Pankrac
     {
         public string Name { get; set; }
-        public double posX { get; set; } = 300;
-        public double posY { get; set; } = 900;
+        public double posX { get; set; } = 0;
+        public double posY { get; set; } = 0;
         public string init { get; set; }
         public Image pankrac { get; set; }
         public double targetX { get; set; }

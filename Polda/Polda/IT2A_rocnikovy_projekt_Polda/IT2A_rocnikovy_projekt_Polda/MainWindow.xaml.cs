@@ -18,13 +18,64 @@ using System.Windows.Threading;
 
 namespace IT2A_rocnikovy_projekt_Polda
 {
+    // TODO
+    //      - zvuk
+    //      - menu
+    //      - návod
+    //      - zprávy
+    //      - go back tlačítko
+    //      - přidat aspoň druhou scénu (místnost s teleportem, odtud zjistí jak použít grimoair) nový xamel?
+    //      - prohra na čas?
+
+    // future TODO - animace chození
+    //             - animace sbírání věcí
+    //             - animace používání věcí
+    //             - animace interakce s hotspoty
+    //             - konstantní animace hýbajících se věcí (např. plameny na svíčkách, vířící se lektvar atd.)
+    //             - animace návodu jako rozbalujícího se svitku
     public partial class MainWindow : Window
     {
         Random rnd = new Random();
         Item? heldItem;
         Pankrac pankrac = new Pankrac("Pankrác Moudrý", 0, 0, "Pankrac");
         Inventory inventory = new Inventory();
+        //MediaPlayer mediaPlayer = new MediaPlayer() { Volume = 0.1 };
+        bool canPlace = true;
+        int itemsToBePlaced = 6;
 
+
+        //void SetupMediaPlayer()
+        //{
+        //    if (mediaPlayer != null)
+        //    {
+        //        mediaPlayer.Source = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "background.mp3"), UriKind.Absolute);
+        //    }
+        //}
+
+        private List<Hotspot> polygons = new List<Hotspot>()
+        {
+            new Hotspot("Rituální kruh", false,  566, 1076, "Kruh obsahuje pečetící magii. Pečeť je pasivní kouzlo schopné schraňovt vybraný objekt mimo dosah našich smyslů.", 1345, 1077, 1368, 789, 567, 789),
+            new Hotspot("Magický inkust", false, 966, 902, "Magický inkust je běžně užit u smluv vázaných poutací magií. Tvoří vauzbu na jeho uživatele která je prakticky nezlomitená ale žeprý se dá obejít.", 963, 872, 946, 872, 921, 885, 920, 901),
+            new Hotspot("Místo pro lektvar", false,  1157, 1050, "Místo pro lektvar", 1209, 1035, 1183, 1007, 1130, 1019),
+            new Hotspot("Místo pro kouzlo z Grimoireu", false,  702, 993, "Místo pro kouzlo z Grimoireu", 756, 1003, 762, 1054, 696, 1042),
+            new Hotspot("Místo pro Sefirot", false,  625, 817, "Místo pro Sefirot", 671, 830, 670, 856, 610, 857),
+            new Hotspot("Místo pro Svitek času", false,  916, 763, "Místo pro Svitek času", 976, 762, 979, 802, 917, 799),
+            new Hotspot("Místo pro Svitek prostoru", false,  1219, 816, "Místo pro Svitek prostoru", 1285, 821, 1293, 856, 1227, 855),
+            new Hotspot("Alechemistická apartatura", false,  5, 476, "Alechemická apartatura", 2, 698, 498, 655, 472, 462, 292, 346),
+            new Hotspot("Instrukce rituálu", true,  861, 626, "Instrukce rituálu. Jsou zde nakresleny nějaké symboly a znaky, které mohou být důležité pro provedení rituálu. Jsou u nich nějaké malé texty. Měl bych se podívat.", 1272, 626, 1303, 128, 886, 126),
+            new Hotspot("Rozbitý lektvar", false,  1120, 1057, "Rozbitý lektvar. Měl bych ho odělat než se někdo zraní. Odkud se tak asi vzal?", 1228, 1054, 1240, 1012, 1198, 926, 1127, 994),
+            new Hotspot("Cár pláště", true,  1912, 939, "Cár pláště", 1817, 944, 1570, 1769, 1916, 1069),
+            new Hotspot("Podezřelé stopy", true,  1384, 988, "Nejspíše úniková cesta hledaného zloděje. Vedou do prázdna takže se musel teleportovat pryč.", 1554, 854, 1874, 859, 1735, 999),
+            new Hotspot("Ingredience", false, 1072, 546, "Kombinece fantastických matérií tvořící bájnou substanci schopnou dočasného spojení našeho světa se světem magickým.", 1083, 459, 1243, 451, 1242, 542),
+            new Hotspot("Spouštěč", false, 1035, 538, "Silný výboj magické moci schopný uvést do pohybu ty nejnáročnější procesí.", 888, 543, 943, 423, 1004, 459, 993, 480),
+            new Hotspot("Zdroj", false, 947, 386, "Baterie plná magické energie schopná pohánět nekonečné čarovné inkatace.", 883, 324, 945, 257, 1010, 323),
+            new Hotspot("Časovač", false, 1053, 213, "Nástroj s mocí ovládnout čas a schopnots volně jím proplouvat.", 1054, 301, 1119, 302, 1119, 212),
+            new Hotspot("Směrovač", false, 1150, 269, "Instrument schonpnný ovládání prostoru a nemožného přenosu v něm.", 1158, 390, 1261, 385, 1262, 273),
+            new Hotspot("?", false, 1007, 469, "Spojení všech instrukcí v rituálu tvořící nepředstavitelně mocné zakletí.", 995, 345, 1085, 307, 1153, 359, 1164, 453),
+            new Hotspot("Exit", false,  0, 1080, "Exit", 130, 1080, 130, 715, 0, 715),
+            new Hotspot("Druhá místnost", true, 1920, 900, "Vchod do druhé místnosti", 1920, 100, 1820, 100, 1820, 900),
+            // add empty props
+        };
 
         List<Item> items = new List<Item>()
         {
@@ -32,33 +83,31 @@ namespace IT2A_rocnikovy_projekt_Polda
             new Item("Sefirot", "Sefirot, je mocné magické jádro překypující přírodní magií.", "sefirot", 79, 143, true),
             new Item("Svitek prostoru", "Text schopen ovládnutí prostoru v malém okolí.", "scrollS", 1425, 186, true),
             new Item("Svitek času", "Text s mocí ovládnout čas určeného objektu.", "scrollT", 1727, 377, true),
-            new Item("Lektvar divoké magie.", "Tento jektvar je vytvořen smícháním kočičího chlupu a baziliščího jedu, těch nejmagičtějších látek.", "potion", 484, 523, true),
-            new Item("Grimoire", "Mocný magický svazek obsahující významná kouzla schopná rozpoutat i ty nejsilnější procesy.", "grimoire", 1195, 638, true),
-            new Item("Cár pláště", "Kus mágova pláště, utrženém ve spěchu.", "textil", 1770, 941, false), // gets collectable after player becomes aware of key logic
+            new Item("Lektvar divoké magie", "Tento jektvar je vytvořen smícháním kočičího chlupu a baziliščího jedu, těch nejmagičtějších látek.", "potion", 484, 523, true),
+            new Item("Grimoire", "Mocný magický svazek obsahující významná kouzla schopná rozpoutat i ty nejsilnější bouře kouzel.", "grimoire", 1195, 638, true),
+            new Item("Cár pláště", "Kus mágova pláště, utrženém ve spěchu.", "textil", 1770, 941, false),
             new Item("Rozbitý lektvar", "Vipadá to jako čerstvě uvařený a ještě čerstvěji roztříštěný lektvar.", "broken", 1108, 893, false),
         };
 
-        private List<Hotspot> polygons = new List<Hotspot>()
-        {
-            new Hotspot("Magický inkust", true, 966, 902, "Magický inkust je běžně užit u smluv vázaných poutací magií.", 963, 872, 946, 872, 921, 885, 920, 901),
-            new Hotspot("Alechemistická apartatura", false,  5, 476, "Alechemická apartatura", 2, 635, 498, 655, 472, 462, 292, 346),
-            new Hotspot("Instrukce rituálu", true,  861, 626, "Instrukce rituálu", 1272, 626, 1303, 128, 886, 126),
-            new Hotspot("Rozbitý lektvar", true,  1120, 1057, "Rozbitý lektvar", 1228, 1054, 1240, 1012, 1198, 926, 1127, 994),
-            new Hotspot("Cár pláště", true,  1912, 939, "Cár pláště", 1817, 944, 1570, 1769, 1916, 1069),
-            new Hotspot("Podezřelé stopy", true,  1384, 988, "Nejspíše úniková cesta hledaného zloděje. Vedou do prázdna takže se musel teleportovat pryč.", 1554, 854, 1874, 859, 1735, 999),
-            // magický kruh Pečeť je pasivní kouzlo schopné schraňovt vybraný objekt mimo dosah našich protor.
-            // add hotspot for every thing on návod
-            // add hotspot for all five ingredients of ritual
-        };
+
+        MediaPlayer mediaPlayer = new MediaPlayer() { Volume = 0.1 };
+
         public MainWindow()
         {
             InitializeComponent();
+            mediaPlayer.Source = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "background.mp3"), UriKind.Relative);
             Loaded += MainWindow_Loaded;
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Draw();
+            //SetupMediaPlayer();
+            //if (mediaPlayer.Source == null)
+            //{
+            //    if () mediaPlayer.Source = new Uri("C:\\Users\\polda\\source\\repos\\IT2A_rocnikovy_projekt_Polda\\Assets\\background.mp3");
+            //    mediaPlayer.Play();
+            //}
 
             OverlayCanvas.Children.Add(pankrac.pankrac);
             Canvas.SetZIndex(pankrac.pankrac, 997);
@@ -68,7 +117,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             Canvas.SetTop(pankrac.pankrac, 600);
 
             OverlayCanvas.Children.Add(inventory.InvetoryImage);
-            Canvas.SetZIndex(inventory.InvetoryImage, 1);
+            Canvas.SetZIndex(inventory.InvetoryImage, 2);
 
             foreach (Item item in items)
             {
@@ -103,6 +152,9 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             foreach (var poly in polygons)
             {
+                if (poly?.polygon == null)
+                    continue;
+
                 poly.polygon.MouseDown -= Polygon_MouseDown;
                 poly.polygon.MouseDown += Polygon_MouseDown;
                 poly.polygon.Tag = poly;
@@ -119,39 +171,179 @@ namespace IT2A_rocnikovy_projekt_Polda
                 myPointCollection.Add(Point3);
                 myPointCollection.Add(Point4);
                 poly.polygon.Points = myPointCollection;
+                if (poly == polygons[2] || poly == polygons[3] || poly == polygons[4] || poly == polygons[5] || poly == polygons[6] || poly == polygons[18]) continue;
                 OverlayCanvas.Children.Add(poly.polygon);
-                Canvas.SetZIndex(poly.polygon, 2);
+                Canvas.SetZIndex(poly.polygon, 1);
             }
         }
 
         private void Polygon_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Polygon btn = sender as Polygon;
-            Hotspot point = btn.Tag as Hotspot;
+            if (!(sender is Polygon btn) || !(btn.Tag is Hotspot point))
+                return;
 
-            if (point.Name == "Rozbitý lektvar" && !polygons[1].acessable )
+            var pos = e.GetPosition(MapImage);
+            pankrac.move(pos.X, pos.Y);
+
+            if (point.Name == "Rozbitý lektvar" && !polygons[7].acessable )
             {
-                polygons[1].acessable = true;
-                MessageBox.Show("Kde se tady asi tak vzal? Vipadá to že budu potřebovat nový, z tohohle už moc nezbývá.");
+                polygons[7].acessable = true;
+                MessageBox.Show("Kde se tady asi tak vzal? Vipadá to že budu potřebovat nový, z tohohle už krom střepů moc nezbývá.");
             }
             if (point.Name == "Alechemistická apartatura" && point.acessable)
             {
+                Canvas.SetZIndex(items[7].ItemImage, 997);
                 items[7].Collectable = true;
-                if (polygons.Count > 3)
+                if (polygons.Count > 9)
                 {
-                    Hotspot target = polygons[3];
+                    Hotspot target = polygons[9];
                     if (target?.polygon != null)  OverlayCanvas.Children.Remove(target.polygon);
                 }
                 MessageBox.Show("Ahhaa - tak tady se dělají lektvary!");
             }
 
+            if (!point.acessable && point.Name == "Ingredience" || point.Name == "Spouštěč" || point.Name == "Zdroj" || point.Name == "Časovač" || point.Name == "Směrovač" || point.Name == "?")
+            {
+                point.acessable = true;
+                polygons[8].init = "Rituální instrukce se znaky a popisky.";
+            }
+            if (!point.acessable && point.Name == "Rituální kruh" || point.Name == "Magický inkust" || point.Name == "Cár pláště")
+            {
+                point.acessable = true;
+            }
+
+            if (polygons[12].acessable && polygons[13].acessable && polygons[14].acessable && polygons[15].acessable && polygons[16].acessable)
+            {
+                polygons[2].acessable = true;
+                Canvas.SetZIndex(polygons[2].polygon, 2);
+                polygons[3].acessable = true;
+                Canvas.SetZIndex(polygons[3].polygon, 2);
+                polygons[4].acessable = true;
+                Canvas.SetZIndex(polygons[4].polygon, 2);
+                polygons[5].acessable = true;
+                Canvas.SetZIndex(polygons[5].polygon, 2);
+                polygons[6].acessable = true;
+                Canvas.SetZIndex(polygons[6].polygon, 2);
+                MessageBox.Show("Vypadá to že potřebuju najít všechny tyto předměty pro zprovoznění rituálu. ");
+            
+            }
+            if (polygons[0].acessable && polygons[1].acessable && polygons[17].acessable && polygons[10].acessable)
+            {
+                MessageBox.Show("Nejspíš musím rozestavět předměty z návodu na ten magický kruh podle jejich rozložení na návodu.");
+                MessageBox.Show("Vypadá to že náš zloděj se rozhodl ukrýt palantír na bezpečné místě aby se pro něj mohl vrátit až odejdu.");
+                MessageBox.Show("Nejspíš použil rituální pečetící magii aby ho poslal do vnějších prostor mimo naši existenci.");
+                MessageBox.Show("Do těchto míst se normálně nedá dostat, jen převelice mocnými čáry.");
+                MessageBox.Show("A vzhleddem k tomu, že použil inkoust tak na odcizený předmět má dosah jen on.");
+                MessageBox.Show("Ale při psaní umluvy bylo učínkům inkoustu vystaveno jeho celé tělo a já jsem už dříve našel kus odtrženého pláště.");
+                MessageBox.Show("Mohl bych ho zkusit použít jako alternativu pro klíč k rituálu.");
+                // zde případný časovač na vypršení spojení cáru pláště s pečetí
+                if (polygons.Count > 10)
+                {
+                    Hotspot target = polygons[10];
+                    if (target?.polygon != null) OverlayCanvas.Children.Remove(target.polygon);
+                }
+                items[6].Collectable = true;
+                polygons[0].acessable = false;
+                polygons[1].acessable = false;
+            }
+            if (polygons[2].acessable && polygons[3].acessable && polygons[4].acessable && polygons[5].acessable && polygons[6].acessable && canPlace)
+            {
+                canPlace = false;
+                OverlayCanvas.Children.Add(polygons[2].polygon);
+                OverlayCanvas.Children.Add(polygons[3].polygon);
+                OverlayCanvas.Children.Add(polygons[4].polygon);
+                OverlayCanvas.Children.Add(polygons[5].polygon);
+                OverlayCanvas.Children.Add(polygons[6].polygon);
+            }
+
+            if (point.Name == "Místo pro lektvar" && inventory.Items.Any(i => i != null && i.Name == "Lektvar divoké magie"))
+            {
+                inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Lektvar divoké magie"));
+                polygons[2].acessable = false;
+                Canvas.SetZIndex(polygons[2].polygon, 2);
+                MessageBox.Show("Vypadá to že lektvar patří sem. Měl bych ho sem dát.");
+                items[4].ItemImage.Visibility = Visibility.Visible;
+                Canvas.SetLeft(items[4].ItemImage, polygons[2].XPercent0 - 80);
+                Canvas.SetTop(items[4].ItemImage, polygons[2].YPercent0 - 160);
+                itemsToBePlaced--;
+            }
+            if (point.Name == "Místo pro kouzlo z Grimoireu" && inventory.Items.Any(i => i != null && i.Name == "Grimoire"))
+            {
+                inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Grimoire"));
+                polygons[3].acessable = false;
+                Canvas.SetZIndex(polygons[3].polygon, 2);
+                MessageBox.Show("Vypadá to že grimoire patří sem. Měl bych ho sem dát.");
+                items[5].ItemImage.Visibility = Visibility.Visible;
+                Canvas.SetLeft(items[5].ItemImage, polygons[3].XPercent0 - 70);
+                Canvas.SetTop(items[5].ItemImage, polygons[3].YPercent0 - 90);
+                itemsToBePlaced--;
+            }
+            if (point.Name == "Místo pro Sefirot" && inventory.Items.Any(i => i != null && i.Name == "Sefirot"))
+            {
+                inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Sefirot"));
+                polygons[4].acessable = false;
+                Canvas.SetZIndex(polygons[4].polygon, 2);
+                MessageBox.Show("Vypadá to že Sefirot patří sem. Měl bych ho sem dát.");
+                items[1].ItemImage.Visibility = Visibility.Visible;
+                Canvas.SetLeft(items[1].ItemImage, polygons[4].XPercent0 - 80);
+                Canvas.SetTop(items[1].ItemImage, polygons[4].YPercent0 - 70);
+                itemsToBePlaced--;
+            }
+            if ((point.Name == "Místo pro Svitek času") && inventory.Items.Any(i => i != null && i.Name == "Svitek času")) 
+            {
+                inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Svitek času"));
+                polygons[5].acessable = false;
+                Canvas.SetZIndex(polygons[5].polygon, 2);
+                MessageBox.Show("Vypadá to že Svitek času patří sem. Měl bych ho sem dát.");
+                items[2].ItemImage.Visibility = Visibility.Visible;
+                Canvas.SetLeft(items[2].ItemImage, polygons[5].XPercent0 - 60);
+                Canvas.SetTop(items[2].ItemImage, polygons[5].YPercent0 - 80);
+                itemsToBePlaced--;
+            }
+            if (point.Name == "Místo pro Svitek prostoru" && inventory.Items.Any(i => i != null && i.Name == "Svitek prostoru")) 
+            {
+                inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Svitek prostoru"));
+                polygons[6].acessable = false;
+                Canvas.SetZIndex(polygons[6].polygon, 2);
+                MessageBox.Show("Vypadá to že Svitek prostoru patří sem. Měl bych ho sem dát.");
+                items[3].ItemImage.Visibility = Visibility.Visible;
+                Canvas.SetLeft(items[3].ItemImage, polygons[6].XPercent0 - 60);
+                Canvas.SetTop(items[3].ItemImage, polygons[6].YPercent0 - 70);
+                itemsToBePlaced--;
+            }
+
+            if (itemsToBePlaced == 1)
+            {
+                if (inventory.Items.Any(i => i != null && i.Name == "Cár pláště"))
+                {
+                    items[0].Collectable = true;
+                    items[0].ItemImage.Visibility = Visibility.Visible;
+                    Canvas.SetZIndex(items[0].ItemImage, 997);
+                    MessageBox.Show("Wow... to je on, podařilo se to!!!");
+                    MessageBox.Show("Teď ho musím jít vrátit.");
+                    OverlayCanvas.Children.Add(polygons[18].polygon);
+                    Canvas.SetZIndex(polygons[18].polygon, 997);
+                    polygons[18].acessable = true;
+                    itemsToBePlaced--;
+                    // možnost přidání animace odpečetění a teleportace palantíru zpět do světa
+                }
+            }
+            if (point.Name == "Exit" && polygons[18].acessable)
+            {
+                if (!inventory.Items.Any(i => i != null && i.Name == "Palantír"))
+                {
+                    MessageBox.Show("Musím sebou vzít ten palantír.");
+                }
+                MessageBox.Show("Podařilo se mi získat palantír a vrátit ho na místo. Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře. Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
+                Application.Current.Shutdown();
+            }
 
             MessageBox.Show(point.init);
         }
         private void Pankrac_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Image btn = sender as Image;
-            Pankrac point = btn.Tag as Pankrac;
+            if (!(sender is Image btn) || !(btn.Tag is Pankrac point))
+                return;
 
             inventory.VisibilityToggle(pankrac.pankrac);
             Canvas.SetZIndex(inventory.InvetoryImage, 1);
@@ -172,23 +364,25 @@ namespace IT2A_rocnikovy_projekt_Polda
         }
         private void Item_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //var pos = e.GetPosition(MapImage);
+            if (!(sender is Image btn) || !(btn.Tag is Item point))
+                return;
 
-            //double xPercent = pos.X;
-            //double yPercent = pos.Y;
-
-
-            if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = true;
-            Image btn = sender as Image;
-            Item point = btn.Tag as Item;
+            var pos = e.GetPosition(MapImage);
+            pankrac.move(pos.X, pos.Y);
 
             Mouse.Capture(OverlayCanvas);
+
+            // safely clear previous heldItem visuals if any
+            if (heldItem != null)
+                heldItem.ItemImage.IsHitTestVisible = true;
+
             heldItem = point;
+
             if (heldItem.Collectable)
             {
                 Canvas.SetZIndex(heldItem.ItemImage, 999);
                 inventory.RemoveItem(heldItem);
-                if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = false;
+                heldItem.ItemImage.IsHitTestVisible = false;
                 timer = DateTime.Now;
             }
             else
@@ -196,8 +390,6 @@ namespace IT2A_rocnikovy_projekt_Polda
                 heldItem = null;
                 Mouse.Capture(null);
             }
-            
-
         }
 
         private void Item_MouseUp(object sender, MouseButtonEventArgs e)
