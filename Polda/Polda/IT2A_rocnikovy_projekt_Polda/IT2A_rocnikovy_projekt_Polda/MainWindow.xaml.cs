@@ -95,19 +95,14 @@ namespace IT2A_rocnikovy_projekt_Polda
         public MainWindow()
         {
             InitializeComponent();
-            mediaPlayer.Source = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "background.mp3"), UriKind.Relative);
+            mediaPlayer.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "back.mp3")));
             Loaded += MainWindow_Loaded;
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Draw();
-            //SetupMediaPlayer();
-            //if (mediaPlayer.Source == null)
-            //{
-            //    if () mediaPlayer.Source = new Uri("C:\\Users\\polda\\source\\repos\\IT2A_rocnikovy_projekt_Polda\\Assets\\background.mp3");
-            //    mediaPlayer.Play();
-            //}
+            mediaPlayer.Play();
 
             OverlayCanvas.Children.Add(pankrac.pankrac);
             Canvas.SetZIndex(pankrac.pankrac, 997);
