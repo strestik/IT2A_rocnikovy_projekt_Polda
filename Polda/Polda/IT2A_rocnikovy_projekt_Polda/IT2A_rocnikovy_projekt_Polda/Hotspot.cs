@@ -36,7 +36,8 @@ namespace IT2A_rocnikovy_projekt_Polda
 
 
         public Hotspot(string name, bool acess, double xPercent0, double yPercent0, string audio = "", string item = "Empty", double xPercent1 = 0, double yPercent1 = 0, 
-            double xPercent2 = 0, double yPercent2 = 0, double xPercent3 = 0, double yPercent3 = 0, double xPercent4 = 0, double yPercent4 = 0, 
+            double xPercent2 = 0, double yPercent2 = 0, double xPercent3 = 0, double yPercent3 = 0, double xPercent4 = 0, double yPercent4 = 0, double xPercent5 = 0, 
+            double yPercent5 = 0, double xPercent6 = 0, double yPercent6 = 0, double xPercent7 = 0, double yPercent7 = 0,
              System.Windows.Media.Brush stroke = null, double strokeThickness = 1)
         {
             Name = name;
@@ -50,6 +51,12 @@ namespace IT2A_rocnikovy_projekt_Polda
             YPercent3 = yPercent3 != 0 ? yPercent3 : yPercent2;
             XPercent4 = xPercent4 != 0 ? xPercent4 : xPercent3;
             YPercent4 = yPercent4 != 0 ? yPercent4 : yPercent3;
+            XPercent4 = xPercent5 != 0 ? xPercent5 : xPercent4;
+            YPercent4 = yPercent5 != 0 ? yPercent5 : yPercent4;
+            XPercent4 = xPercent6 != 0 ? xPercent6 : xPercent5;
+            YPercent4 = yPercent6 != 0 ? yPercent6 : yPercent5;
+            XPercent4 = xPercent7 != 0 ? xPercent7 : xPercent6;
+            YPercent4 = yPercent7 != 0 ? yPercent7 : yPercent6;
             init = item;
             acessable = acess;
             audioPath = audio;
