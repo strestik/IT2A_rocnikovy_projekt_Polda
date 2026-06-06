@@ -43,7 +43,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         private List<Hotspot> polygons = new List<Hotspot>()
         {
-            new Hotspot("Rituální kruh", false,  566, 1076, "ritual.mp3", "Kruh obsahuje pečetící magii. Pečeť je pasivní kouzlo schopné schraňovt vybraný objekt mimo dosah našich smyslů.", 1345, 1077, 1368, 789, 567, 789),
+            new Hotspot("Rituální kruh", false,  524, 921, "ritual.mp3", "Kruh obsahuje pečetící magii. Pečeť je pasivní kouzlo schopné schraňovt vybraný objekt mimo dosah našich smyslů.", 629, 819, 838, 763, 1077, 763, 1357, 870, 1361, 980, 1192, 1075, 707, 1077),
             new Hotspot("Magický inkoust", false, 966, 902, "inkoust.mp3", "Magický inkoust je běžně užit u smluv vázaných poutací magií. Tvoří vazbu na jeho uživatele, která je prakticky nezlomitelná, ale prý se dá obejít.", 963, 872, 946, 872, 921, 885, 920, 901),
             new Hotspot("Místo pro lektvar", false,  1157, 1050, "lektvarMisto.mp3", "Místo pro lektvar", 1209, 1035, 1183, 1007, 1130, 1019),
             new Hotspot("Místo pro kouzlo z Grimoireu", false,  702, 993, "grimoireMisto.mp3", "Místo pro kouzlo z Grimoireu", 756, 1003, 762, 1054, 696, 1042),
@@ -112,6 +112,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             {
                 item.ItemImage.Tag = item;
                 OverlayCanvas.Children.Add(item.ItemImage);
+                Canvas.SetZIndex(item.ItemImage, 2);
                 item.ItemImage.MouseDown += Item_MouseDown;
             }
             inventory.InvetoryImage.MouseDown += Inventory_MouseDown;
@@ -153,12 +154,18 @@ namespace IT2A_rocnikovy_projekt_Polda
                 System.Windows.Point Point2 = new System.Windows.Point(poly.XPercent2, poly.YPercent2);
                 System.Windows.Point Point3 = new System.Windows.Point(poly.XPercent3, poly.YPercent3);
                 System.Windows.Point Point4 = new System.Windows.Point(poly.XPercent4, poly.YPercent4);
+                System.Windows.Point Point5 = new System.Windows.Point(poly.XPercent5, poly.YPercent5);
+                System.Windows.Point Point6 = new System.Windows.Point(poly.XPercent6, poly.YPercent6);
+                System.Windows.Point Point7 = new System.Windows.Point(poly.XPercent7, poly.YPercent7);
                 PointCollection myPointCollection = new PointCollection();
                 myPointCollection.Add(Point0);
                 myPointCollection.Add(Point1);
                 myPointCollection.Add(Point2);
                 myPointCollection.Add(Point3);
                 myPointCollection.Add(Point4);
+                myPointCollection.Add(Point5);
+                myPointCollection.Add(Point6);
+                myPointCollection.Add(Point7);
                 poly.polygon.Points = myPointCollection;
                 if (poly == polygons[2] || poly == polygons[3] || poly == polygons[4] || poly == polygons[5] || poly == polygons[6] || poly == polygons[18]) continue;
                 OverlayCanvas.Children.Add(poly.polygon);
@@ -361,6 +368,8 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             var pos = e.GetPosition(MapImage);
             pankrac.move(pos.X, pos.Y);
+            text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "itemlogs", point.audioPath)));
+            text.Play();
 
             Mouse.Capture(OverlayCanvas);
 
@@ -394,10 +403,9 @@ namespace IT2A_rocnikovy_projekt_Polda
             //double yPercent = pos.Y;
             //Image btn = sender as Image;
             //Item point = btn.Tag as Item;
-
-
             double invLeft = Canvas.GetLeft(inventory.InvetoryImage);
             double invTop = Canvas.GetTop(inventory.InvetoryImage);
+
             if (pos.X > invLeft && pos.X < invLeft + inventory.InvetoryImage.ActualWidth &&
                 pos.Y > invTop && pos.Y < invTop + inventory.InvetoryImage.ActualHeight)
             {
@@ -406,11 +414,12 @@ namespace IT2A_rocnikovy_projekt_Polda
                     if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = true;
                     Mouse.Capture(null);
                     inventory.AddItem(heldItem);
-                    Canvas.SetZIndex(heldItem.ItemImage, 998);
+                    Canvas.SetZIndex(heldItem.ItemImage, 997);
                     heldItem = null;
                 }
             }
         }
+
         private void Inventory_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var pos = e.GetPosition(MapImage);
@@ -427,9 +436,9 @@ namespace IT2A_rocnikovy_projekt_Polda
             double xPercent = pos.X;
             double yPercent = pos.Y;
 
-            //pankrac.move(xPercent, yPercent);
+            pankrac.move(xPercent, yPercent);
 
-            MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
+            //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
         }
     }
 }

@@ -29,6 +29,12 @@ namespace IT2A_rocnikovy_projekt_Polda
         public double YPercent3 { get; set; }
         public double XPercent4 { get; set; }
         public double YPercent4 { get; set; }
+        public double XPercent5 { get; set; }
+        public double YPercent5 { get; set; }
+        public double XPercent6 { get; set; }
+        public double YPercent6 { get; set; }
+        public double XPercent7 { get; set; }
+        public double YPercent7 { get; set; }
         public string init { get; set; }
         public bool acessable { get; set; }
         public string audioPath { get; set; }
@@ -43,20 +49,20 @@ namespace IT2A_rocnikovy_projekt_Polda
             Name = name;
             XPercent0 = xPercent0;
             YPercent0 = yPercent0;
-            XPercent1 = xPercent1 != 0 ? xPercent1 : xPercent0;
-            YPercent1 = yPercent1 != 0 ? yPercent1 : yPercent0;
-            XPercent2 = xPercent2 != 0 ? xPercent2 : xPercent1;
-            YPercent2 = yPercent2 != 0 ? yPercent2 : yPercent1;
-            XPercent3 = xPercent3 != 0 ? xPercent3 : xPercent2;
-            YPercent3 = yPercent3 != 0 ? yPercent3 : yPercent2;
-            XPercent4 = xPercent4 != 0 ? xPercent4 : xPercent3;
-            YPercent4 = yPercent4 != 0 ? yPercent4 : yPercent3;
-            XPercent4 = xPercent5 != 0 ? xPercent5 : xPercent4;
-            YPercent4 = yPercent5 != 0 ? yPercent5 : yPercent4;
-            XPercent4 = xPercent6 != 0 ? xPercent6 : xPercent5;
-            YPercent4 = yPercent6 != 0 ? yPercent6 : yPercent5;
-            XPercent4 = xPercent7 != 0 ? xPercent7 : xPercent6;
-            YPercent4 = yPercent7 != 0 ? yPercent7 : yPercent6;
+            XPercent1 = xPercent1 != 0 ? xPercent1 : XPercent0;
+            YPercent1 = yPercent1 != 0 ? yPercent1 : YPercent0;
+            XPercent2 = xPercent2 != 0 ? xPercent2 : XPercent1;
+            YPercent2 = yPercent2 != 0 ? yPercent2 : YPercent1;
+            XPercent3 = xPercent3 != 0 ? xPercent3 : XPercent2;
+            YPercent3 = yPercent3 != 0 ? yPercent3 : YPercent2;
+            XPercent4 = xPercent4 != 0 ? xPercent4 : XPercent3;
+            YPercent4 = yPercent4 != 0 ? yPercent4 : YPercent3;
+            XPercent5 = xPercent5 != 0 ? xPercent5 : XPercent4;
+            YPercent5 = yPercent5 != 0 ? yPercent5 : YPercent4;
+            XPercent6 = xPercent6 != 0 ? xPercent6 : XPercent5;
+            YPercent6 = yPercent6 != 0 ? yPercent6 : YPercent5;
+            XPercent7 = xPercent7 != 0 ? xPercent7 : XPercent6;
+            YPercent7 = yPercent7 != 0 ? yPercent7 : YPercent6;
             init = item;
             acessable = acess;
             audioPath = audio;
