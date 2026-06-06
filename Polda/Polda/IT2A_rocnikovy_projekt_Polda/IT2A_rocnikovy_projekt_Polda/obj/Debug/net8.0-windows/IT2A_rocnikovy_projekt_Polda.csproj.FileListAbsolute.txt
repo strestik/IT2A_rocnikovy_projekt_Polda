@@ -93,3 +93,15 @@ C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\logs\mistnost.mp3
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\logs\rozbit.mp3
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\logs\spojeni.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\aparature.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\aquired.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\brokePotion.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\contemplation.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\end.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\grimoireMisto.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\ingredients.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\out.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\potionMisto.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\sefirotMisto.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\svitekSMisto.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\svitekTMisto.mp3

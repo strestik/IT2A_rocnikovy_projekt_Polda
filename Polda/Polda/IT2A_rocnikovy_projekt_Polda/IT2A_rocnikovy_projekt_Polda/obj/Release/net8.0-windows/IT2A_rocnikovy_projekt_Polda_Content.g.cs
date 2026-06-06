@@ -8,6 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/aparature.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/aquired.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/brokepotion.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/contemplation.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/end.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/grimoiremisto.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/ingredients.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/out.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/potionmisto.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/sefirotmisto.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/sviteksmisto.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("interactions/svitektmisto.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logs/sefirotmisto.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logs/smerovac.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logs/spoustec.mp3")]

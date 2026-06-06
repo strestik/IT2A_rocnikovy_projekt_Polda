@@ -35,6 +35,18 @@
     <None Remove="img\sefirot.png" />
     <None Remove="img\textil.png" />
     <None Remove="img\untitled.png" />
+    <None Remove="interactions\aparature.mp3" />
+    <None Remove="interactions\aquired.mp3" />
+    <None Remove="interactions\brokePotion.mp3" />
+    <None Remove="interactions\contemplation.mp3" />
+    <None Remove="interactions\end.mp3" />
+    <None Remove="interactions\grimoireMisto.mp3" />
+    <None Remove="interactions\ingredients.mp3" />
+    <None Remove="interactions\out.mp3" />
+    <None Remove="interactions\potionMisto.mp3" />
+    <None Remove="interactions\sefirotMisto.mp3" />
+    <None Remove="interactions\svitekSMisto.mp3" />
+    <None Remove="interactions\svitekTMisto.mp3" />
     <None Remove="itemlogs\grimoire.mp3" />
     <None Remove="itemlogs\lektvar.mp3" />
     <None Remove="itemlogs\palantir.mp3" />
@@ -67,6 +79,42 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="interactions\aparature.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\aquired.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\brokePotion.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\contemplation.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\end.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\grimoireMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\ingredients.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\out.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\potionMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\sefirotMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\svitekSMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="interactions\svitekTMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="logs\sefirotMisto.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
