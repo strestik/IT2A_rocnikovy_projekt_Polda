@@ -19,7 +19,6 @@ using System.Windows.Threading;
 namespace IT2A_rocnikovy_projekt_Polda
 {
     // TODO
-    //      - zvuk
     //      - menu
     //      - návod
     //      - zprávy
@@ -39,70 +38,65 @@ namespace IT2A_rocnikovy_projekt_Polda
         Item? heldItem;
         Pankrac pankrac = new Pankrac("Pankrác Moudrý", 0, 0, "Pankrac");
         Inventory inventory = new Inventory();
-        //MediaPlayer mediaPlayer = new MediaPlayer() { Volume = 0.1 };
         bool canPlace = true;
         int itemsToBePlaced = 6;
 
-
-        //void SetupMediaPlayer()
-        //{
-        //    if (mediaPlayer != null)
-        //    {
-        //        mediaPlayer.Source = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "background.mp3"), UriKind.Absolute);
-        //    }
-        //}
-
         private List<Hotspot> polygons = new List<Hotspot>()
         {
-            new Hotspot("Rituální kruh", false,  566, 1076, "Kruh obsahuje pečetící magii. Pečeť je pasivní kouzlo schopné schraňovt vybraný objekt mimo dosah našich smyslů.", 1345, 1077, 1368, 789, 567, 789),
-            new Hotspot("Magický inkust", false, 966, 902, "Magický inkust je běžně užit u smluv vázaných poutací magií. Tvoří vauzbu na jeho uživatele která je prakticky nezlomitená ale žeprý se dá obejít.", 963, 872, 946, 872, 921, 885, 920, 901),
-            new Hotspot("Místo pro lektvar", false,  1157, 1050, "Místo pro lektvar", 1209, 1035, 1183, 1007, 1130, 1019),
-            new Hotspot("Místo pro kouzlo z Grimoireu", false,  702, 993, "Místo pro kouzlo z Grimoireu", 756, 1003, 762, 1054, 696, 1042),
-            new Hotspot("Místo pro Sefirot", false,  625, 817, "Místo pro Sefirot", 671, 830, 670, 856, 610, 857),
-            new Hotspot("Místo pro Svitek času", false,  916, 763, "Místo pro Svitek času", 976, 762, 979, 802, 917, 799),
-            new Hotspot("Místo pro Svitek prostoru", false,  1219, 816, "Místo pro Svitek prostoru", 1285, 821, 1293, 856, 1227, 855),
-            new Hotspot("Alechemistická apartatura", false,  5, 476, "Alechemická apartatura", 2, 698, 498, 655, 472, 462, 292, 346),
-            new Hotspot("Instrukce rituálu", true,  861, 626, "Instrukce rituálu. Jsou zde nakresleny nějaké symboly a znaky, které mohou být důležité pro provedení rituálu. Jsou u nich nějaké malé texty. Měl bych se podívat.", 1272, 626, 1303, 128, 886, 126),
-            new Hotspot("Rozbitý lektvar", false,  1120, 1057, "Rozbitý lektvar. Měl bych ho odělat než se někdo zraní. Odkud se tak asi vzal?", 1228, 1054, 1240, 1012, 1198, 926, 1127, 994),
-            new Hotspot("Cár pláště", true,  1912, 939, "Cár pláště", 1817, 944, 1570, 1769, 1916, 1069),
-            new Hotspot("Podezřelé stopy", true,  1384, 988, "Nejspíše úniková cesta hledaného zloděje. Vedou do prázdna takže se musel teleportovat pryč.", 1554, 854, 1874, 859, 1735, 999),
-            new Hotspot("Ingredience", false, 1072, 546, "Kombinece fantastických matérií tvořící bájnou substanci schopnou dočasného spojení našeho světa se světem magickým.", 1083, 459, 1243, 451, 1242, 542),
-            new Hotspot("Spouštěč", false, 1035, 538, "Silný výboj magické moci schopný uvést do pohybu ty nejnáročnější procesí.", 888, 543, 943, 423, 1004, 459, 993, 480),
-            new Hotspot("Zdroj", false, 947, 386, "Baterie plná magické energie schopná pohánět nekonečné čarovné inkatace.", 883, 324, 945, 257, 1010, 323),
-            new Hotspot("Časovač", false, 1053, 213, "Nástroj s mocí ovládnout čas a schopnots volně jím proplouvat.", 1054, 301, 1119, 302, 1119, 212),
-            new Hotspot("Směrovač", false, 1150, 269, "Instrument schonpnný ovládání prostoru a nemožného přenosu v něm.", 1158, 390, 1261, 385, 1262, 273),
-            new Hotspot("?", false, 1007, 469, "Spojení všech instrukcí v rituálu tvořící nepředstavitelně mocné zakletí.", 995, 345, 1085, 307, 1153, 359, 1164, 453),
-            new Hotspot("Exit", false,  0, 1080, "Exit", 130, 1080, 130, 715, 0, 715),
-            new Hotspot("Druhá místnost", true, 1920, 900, "Vchod do druhé místnosti", 1920, 100, 1820, 100, 1820, 900),
+            new Hotspot("Rituální kruh", false,  566, 1076, "ritual.mp3", "Kruh obsahuje pečetící magii. Pečeť je pasivní kouzlo schopné schraňovt vybraný objekt mimo dosah našich smyslů.", 1345, 1077, 1368, 789, 567, 789),
+            new Hotspot("Magický inkoust", false, 966, 902, "inkoust.mp3", "Magický inkoust je běžně užit u smluv vázaných poutací magií. Tvoří vazbu na jeho uživatele, která je prakticky nezlomitelná, ale prý se dá obejít.", 963, 872, 946, 872, 921, 885, 920, 901),
+            new Hotspot("Místo pro lektvar", false,  1157, 1050, "lektvarMisto.mp3", "Místo pro lektvar", 1209, 1035, 1183, 1007, 1130, 1019),
+            new Hotspot("Místo pro kouzlo z Grimoireu", false,  702, 993, "grimoireMisto.mp3", "Místo pro kouzlo z Grimoireu", 756, 1003, 762, 1054, 696, 1042),
+            new Hotspot("Místo pro Sefirot", false,  625, 817, "sefirotMisto.mp3", "Místo pro Sefirot", 671, 830, 670, 856, 610, 857),
+            new Hotspot("Místo pro Svitek času", false,  916, 763, "svitekTMisto.mp3", "Místo pro Svitek času", 976, 762, 979, 802, 917, 799),
+            new Hotspot("Místo pro Svitek prostoru", false,  1219, 816, "svitekSMisto.mp3", "Místo pro Svitek prostoru", 1285, 821, 1293, 856, 1227, 855),
+            new Hotspot("Alechemistická apartatura", false,  5, 476, "aparatura.mp3", "Alechemická apartatura", 2, 698, 498, 655, 472, 462, 292, 346),
+            new Hotspot("Instrukce rituálu", true,  861, 626, "instrukce.mp3", "Instrukce rituálu. Jsou zde nakresleny nějaké symboly a znaky, které mohou být důležité pro provedení rituálu. Jsou u nich nějaké malé texty. Měl bych se podívat.", 1272, 626, 1303, 128, 886, 126),
+            new Hotspot("Rozbitý lektvar", false,  1120, 1057, "rozbit.mp3", "Rozbitý lektvar. Měl bych ho odebrat, než se někdo zraní. Odkud se tak asi vzal?", 1228, 1054, 1240, 1012, 1198, 926, 1127, 994),
+            new Hotspot("Cár pláště", true,  1912, 939, "car.mp3", "Cár pláště", 1817, 944, 1570, 1769, 1916, 1069),
+            new Hotspot("Podezřelé stopy", true,  1384, 988, "stopy.mp3", "Nejspíše úniková cesta hledaného zloděje. Vedou do prázdna, takže se musel teleportovat pryč.", 1554, 854, 1874, 859, 1735, 999),
+            new Hotspot("Ingredience", false, 1072, 546, "ingredience.mp3", "Kombinace fantastických matérií tvořící bájnou substanci schopnou dočasného spojení našeho světa se světem magickým.", 1083, 459, 1243, 451, 1242, 542),
+            new Hotspot("Spouštěč", false, 1035, 538, "spoustec.mp3", "Silný výboj magické moci schopný uvést do pohybu ty nejnáročnější procesí.", 888, 543, 943, 423, 1004, 459, 993, 480),
+            new Hotspot("Zdroj", false, 947, 386, "zdroj.mp3", "Baterie plná magické energie, schopná pohánět nekonečné čarovné inkantace.", 883, 324, 945, 257, 1010, 323),
+            new Hotspot("Časovač", false, 1053, 213, "casovac.mp3", "Nástroj s mocí ovládnout čas a schopnost volně jím proplouvat.", 1054, 301, 1119, 302, 1119, 212),
+            new Hotspot("Směrovač", false, 1150, 269, "smerovac.mp3", "Instrument schonpný ovládání prostoru a nemožného přenosu v něm.", 1158, 390, 1261, 385, 1262, 273),
+            new Hotspot("?", false, 1007, 469, "spojeni.mp3", "Spojení všech instrukcí v rituálu tvořící nepředstavitelně mocné zakletí.", 995, 345, 1085, 307, 1153, 359, 1164, 453),
+            new Hotspot("Exit", false,  0, 1080, "exit.mp3", "Východ.", 130, 1080, 130, 715, 0, 715),
+            new Hotspot("Druhá místnost", true, 1920, 900, "mistnost.mp3", "Vchod do druhé místnosti.", 1920, 100, 1820, 100, 1820, 900),
             // add empty props
         };
 
         List<Item> items = new List<Item>()
         {
-            new Item("Palantír", "Nepředstavitelně magický vidoucí kámen který ruší všechnu aktivní magii.", "mahou", 862, 758, false, false),
-            new Item("Sefirot", "Sefirot, je mocné magické jádro překypující přírodní magií.", "sefirot", 79, 143, true),
-            new Item("Svitek prostoru", "Text schopen ovládnutí prostoru v malém okolí.", "scrollS", 1425, 186, true),
-            new Item("Svitek času", "Text s mocí ovládnout čas určeného objektu.", "scrollT", 1727, 377, true),
-            new Item("Lektvar divoké magie", "Tento jektvar je vytvořen smícháním kočičího chlupu a baziliščího jedu, těch nejmagičtějších látek.", "potion", 484, 523, true),
-            new Item("Grimoire", "Mocný magický svazek obsahující významná kouzla schopná rozpoutat i ty nejsilnější bouře kouzel.", "grimoire", 1195, 638, true),
-            new Item("Cár pláště", "Kus mágova pláště, utrženém ve spěchu.", "textil", 1770, 941, false),
-            new Item("Rozbitý lektvar", "Vipadá to jako čerstvě uvařený a ještě čerstvěji roztříštěný lektvar.", "broken", 1108, 893, false),
+            new Item("Palantír", "Nepředstavitelně magický vidoucí kámen, který ruší všechnu aktivní magii.", "mahou", 862, 758, "palatir.mp3", false, false),
+            new Item("Sefirot", "Sefirot je mocné magické jádro překypující přírodní magií.", "sefirot", 79, 143, "sefirot.mp3", true),
+            new Item("Svitek prostoru", "Text schopen ovládnutí prostoru v malém okolí.", "scrollS", 1425, 186, "svitekS.mp3", true),
+            new Item("Svitek času", "Text s mocí ovládnout čas určeného objektu.", "scrollT", 1727, 377, "svitekT.mp3", true),
+            new Item("Lektvar divoké magie", "Tento jektvar je vytvořen smícháním kočičího chlupu a baziliščího jedu, těch nejmagičtějších látek vůbec.", "potion", 484, 523, "lektvar.mp3", true),
+            new Item("Grimoire", "Mocný magický svazek obsahující významná kouzla schopná rozpoutat i ty nejsilnější bouře kouzel.", "grimoire", 1195, 638, "grimoire.mp3", true, true, false),
+            new Item("Cár pláště", "Kus mágova pláště, utrženém ve spěchu.", "textil", 1770, 941, "plast.mp3", false),
+            new Item("Rozbitý lektvar", "Vypadá to jako čerstvě uvařený a ještě čerstvěji roztříštěný lektvar.", "broken", 1108, 893, "rozbity.mp3", false),
         };
 
 
-        MediaPlayer mediaPlayer = new MediaPlayer() { Volume = 0.1 };
+        MediaPlayer background = new MediaPlayer() { Volume = 0.02 };
+        MediaPlayer text = new MediaPlayer() { Volume = 1.4 };
 
         public MainWindow()
         {
             InitializeComponent();
-            mediaPlayer.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "back.mp3")));
+            background.MediaEnded += (s, e) => { background.Position = TimeSpan.Zero; background.Play(); };
+            background.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "back.mp3")));
+            text.MediaOpened += (s, e) => text.Play();
             Loaded += MainWindow_Loaded;
         }
+
+
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Draw();
-            mediaPlayer.Play();
+            background.Play();
 
             OverlayCanvas.Children.Add(pankrac.pankrac);
             Canvas.SetZIndex(pankrac.pankrac, 997);
@@ -179,6 +173,10 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             var pos = e.GetPosition(MapImage);
             pankrac.move(pos.X, pos.Y);
+
+            text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", point.audioPath)));
+            text.Play();
+            MessageBox.Show(point.init);
 
             if (point.Name == "Rozbitý lektvar" && !polygons[7].acessable )
             {
@@ -333,7 +331,6 @@ namespace IT2A_rocnikovy_projekt_Polda
                 Application.Current.Shutdown();
             }
 
-            MessageBox.Show(point.init);
         }
         private void Pankrac_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -409,7 +406,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                     if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = true;
                     Mouse.Capture(null);
                     inventory.AddItem(heldItem);
-                    Canvas.SetZIndex(heldItem.ItemImage, 1);
+                    Canvas.SetZIndex(heldItem.ItemImage, 998);
                     heldItem = null;
                 }
             }

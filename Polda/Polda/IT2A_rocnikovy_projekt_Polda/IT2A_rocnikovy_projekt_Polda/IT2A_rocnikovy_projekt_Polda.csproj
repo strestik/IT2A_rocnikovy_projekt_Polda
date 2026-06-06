@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="music\logs\**" />
+    <EmbeddedResource Remove="music\logs\**" />
+    <None Remove="music\logs\**" />
+    <Page Remove="music\logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="img\back.jpg" />
     <None Remove="img\Bez názvu.png" />
     <None Remove="img\broken.png" />
@@ -28,6 +35,59 @@
     <None Remove="img\sefirot.png" />
     <None Remove="img\textil.png" />
     <None Remove="img\untitled.png" />
+    <None Remove="itemlogs\grimoire.mp3" />
+    <None Remove="itemlogs\lektvar.mp3" />
+    <None Remove="itemlogs\palantir.mp3" />
+    <None Remove="itemlogs\plast.mp3" />
+    <None Remove="itemlogs\rozbity.mp3" />
+    <None Remove="itemlogs\sefirot.mp3" />
+    <None Remove="itemlogs\svitekS.mp3" />
+    <None Remove="itemlogs\svitekT.mp3" />
+    <None Remove="logs\aparatura.mp3" />
+    <None Remove="logs\car.mp3" />
+    <None Remove="logs\casovac.mp3" />
+    <None Remove="logs\exit.mp3" />
+    <None Remove="logs\grimoireMisto.mp3" />
+    <None Remove="logs\ingredience.mp3" />
+    <None Remove="logs\inkoust.mp3" />
+    <None Remove="logs\instrukce.mp3" />
+    <None Remove="logs\lektvarMisto.mp3" />
+    <None Remove="logs\mistnost.mp3" />
+    <None Remove="logs\ritual.mp3" />
+    <None Remove="logs\rozbit.mp3" />
+    <None Remove="logs\sefirotMisto.mp3" />
+    <None Remove="logs\smerovac.mp3" />
+    <None Remove="logs\spojeni.mp3" />
+    <None Remove="logs\spoustec.mp3" />
+    <None Remove="logs\stopy.mp3" />
+    <None Remove="logs\svitekSMisto.mp3" />
+    <None Remove="logs\svitekTMisto.mp3" />
+    <None Remove="logs\zdroj.mp3" />
+	<None Remove="music\back.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="logs\sefirotMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\smerovac.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\spoustec.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\stopy.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\svitekSMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\svitekTMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\zdroj.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -73,6 +133,81 @@
     <Resource Include="img\untitled.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="itemlogs\grimoire.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="itemlogs\lektvar.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="itemlogs\palantir.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="itemlogs\plast.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="itemlogs\rozbity.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="itemlogs\sefirot.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="itemlogs\svitekS.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="itemlogs\svitekT.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\aparatura.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\car.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\casovac.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\exit.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\grimoireMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\ingredience.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\inkoust.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\instrukce.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\lektvarMisto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\mistnost.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\ritual.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\rozbit.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+	 <Content Include="music\back.mp3">
+		 <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	 </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="logs\spojeni.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </ApplicationDefinition>
   </ItemGroup>
 
 </Project>

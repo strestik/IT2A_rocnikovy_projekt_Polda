@@ -31,10 +31,11 @@ namespace IT2A_rocnikovy_projekt_Polda
         public double YPercent4 { get; set; }
         public string init { get; set; }
         public bool acessable { get; set; }
+        public string audioPath { get; set; }
         public Polygon polygon { get; set; } = new Polygon();
 
 
-        public Hotspot(string name, bool acess, double xPercent0, double yPercent0, string item = "Empty", double xPercent1 = 0, double yPercent1 = 0, 
+        public Hotspot(string name, bool acess, double xPercent0, double yPercent0, string audio = "", string item = "Empty", double xPercent1 = 0, double yPercent1 = 0, 
             double xPercent2 = 0, double yPercent2 = 0, double xPercent3 = 0, double yPercent3 = 0, double xPercent4 = 0, double yPercent4 = 0, 
              System.Windows.Media.Brush stroke = null, double strokeThickness = 1)
         {
@@ -51,6 +52,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             YPercent4 = yPercent4 != 0 ? yPercent4 : yPercent3;
             init = item;
             acessable = acess;
+            audioPath = audio;
 
             polygon.Stroke = stroke ?? System.Windows.Media.Brushes.Red;
             polygon.Fill = System.Windows.Media.Brushes.Transparent;
