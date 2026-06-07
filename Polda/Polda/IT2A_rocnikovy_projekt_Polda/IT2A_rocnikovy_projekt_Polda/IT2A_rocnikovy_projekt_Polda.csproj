@@ -76,6 +76,7 @@
     <None Remove="logs\svitekTMisto.mp3" />
     <None Remove="logs\zdroj.mp3" />
 	<None Remove="music\back.mp3" />
+	<None Remove="music\menu.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -134,6 +135,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="logs\zdroj.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="music\menu.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

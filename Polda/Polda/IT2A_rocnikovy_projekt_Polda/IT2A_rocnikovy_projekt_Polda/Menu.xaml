@@ -1,0 +1,23 @@
+﻿<Window x:Class="IT2A_rocnikovy_projekt_Polda.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT2A_rocnikovy_projekt_Polda"
+        mc:Ignorable="d"
+        Title="Menu" Height="450" Width="800">
+    <Grid>
+        <Button Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="48" Width="276" Background="#FF20D4AF" Opacity="0.85" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="3">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Nastavení" HorizontalAlignment="Center" Margin="0,259,0,0" VerticalAlignment="Top" Height="40" Width="276"/>
+
+    </Grid>
+</Window>

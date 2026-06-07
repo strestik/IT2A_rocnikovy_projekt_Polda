@@ -27,6 +27,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logs/sviteksmisto.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logs/svitektmisto.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logs/zdroj.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("music/menu.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("itemlogs/grimoire.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("itemlogs/lektvar.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("itemlogs/palantir.mp3")]

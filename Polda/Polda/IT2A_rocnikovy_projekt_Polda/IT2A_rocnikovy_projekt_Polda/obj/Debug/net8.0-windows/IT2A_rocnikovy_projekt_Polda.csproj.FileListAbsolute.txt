@@ -105,3 +105,5 @@ C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\sefirotMisto.mp3
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\svitekSMisto.mp3
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\interactions\svitekTMisto.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\obj\Debug\net8.0-windows\Menu.g.cs
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\obj\Debug\net8.0-windows\Menu.baml
