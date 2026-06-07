@@ -1,0 +1,12 @@
+<Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,66,0,0" TextWrapping="Wrap" Text="Magická krádež" VerticalAlignment="Top" Width="800" Height="107" FontSize="72" OpacityMask="Gray" Background="#4C6C0A8A" TextAlignment="Center">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFCC0560" Offset="0.802"/>
+                    <GradientStop Color="#FF7B8E54" Offset="0.133"/>
+                    <GradientStop Color="#FF336E9C" Offset="0.448"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+
+    </Grid>

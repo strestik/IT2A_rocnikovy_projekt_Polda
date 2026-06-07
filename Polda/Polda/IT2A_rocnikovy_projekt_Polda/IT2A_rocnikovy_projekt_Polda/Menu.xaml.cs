@@ -34,5 +34,10 @@ namespace IT2A_rocnikovy_projekt_Polda
         {
 
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

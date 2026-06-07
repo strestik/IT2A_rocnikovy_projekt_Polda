@@ -35,6 +35,7 @@
     <None Remove="img\sefirot.png" />
     <None Remove="img\textil.png" />
     <None Remove="img\untitled.png" />
+    <None Remove="img\wizardTower.gif" />
     <None Remove="interactions\aparature.mp3" />
     <None Remove="interactions\aquired.mp3" />
     <None Remove="interactions\brokePotion.mp3" />
@@ -80,6 +81,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="img\wizardTower.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="interactions\aparature.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

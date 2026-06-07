@@ -39,6 +39,7 @@ namespace IT2A_rocnikovy_projekt_Polda
         Pankrac pankrac = new Pankrac("Pankrác Moudrý", 0, 0, "Pankrac");
         Inventory inventory = new Inventory();
         bool canPlace = true;
+        bool known = true;
         int itemsToBePlaced = 6;
 
         private List<Hotspot> polygons = new List<Hotspot>()
@@ -61,7 +62,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             new Hotspot("Časovač", false, 1053, 213, "casovac.mp3", "Nástroj s mocí ovládnout čas a schopnost volně jím proplouvat.", 1054, 301, 1119, 302, 1119, 212),
             new Hotspot("Směrovač", false, 1150, 269, "smerovac.mp3", "Instrument schonpný ovládání prostoru a nemožného přenosu v něm.", 1158, 390, 1261, 385, 1262, 273),
             new Hotspot("?", false, 1007, 469, "spojeni.mp3", "Spojení všech instrukcí v rituálu tvořící nepředstavitelně mocné zakletí.", 995, 345, 1085, 307, 1153, 359, 1164, 453),
-            new Hotspot("Exit", false,  0, 1080, "exit.mp3", "Východ.", 130, 1080, 130, 715, 0, 715),
+            new Hotspot("Exit", false,  0, 1080, "exit.mp3", "Východ.", 130, 1080, 130, 715, 1, 715),
             new Hotspot("Druhá místnost", true, 1920, 900, "mistnost.mp3", "Vchod do druhé místnosti.", 1920, 100, 1820, 100, 1820, 900),
             // add empty props
         };
@@ -218,7 +219,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 point.acessable = true;
             }
 
-            if (polygons[12].acessable && polygons[13].acessable && polygons[14].acessable && polygons[15].acessable && polygons[16].acessable)
+            if (polygons[12].acessable && polygons[13].acessable && polygons[14].acessable && polygons[15].acessable && polygons[16].acessable && known)
             {
                 polygons[2].acessable = true;
                 Canvas.SetZIndex(polygons[2].polygon, 2);
@@ -233,12 +234,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 MessageBox.Show("Vypadá to, že potřebuju najít všechny tyto předměty pro zprovoznění rituálu.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "ingredients.mp3")));
                 text.Play();
-
-                //MessageBox.Show($"{polygons[0].Name} {polygons[0].acessable.ToString()}");
-                //MessageBox.Show($"{polygons[1].Name} {polygons[1].acessable.ToString()}");
-                //MessageBox.Show($"{polygons[17].Name} {polygons[17].acessable.ToString()}");
-                //MessageBox.Show($"{polygons[10].Name} {polygons[10].acessable.ToString()}");
-
+                known = false;
             }
             if (polygons[0].acessable && polygons[1].acessable && polygons[17].acessable && polygons[10].acessable)
             {
@@ -365,16 +361,17 @@ namespace IT2A_rocnikovy_projekt_Polda
             }
             if (point.Name == "Exit" && polygons[18].acessable)
             {
-                if (!inventory.Items.Any(i => i != null && i.Name == "Palantír"))
+                if (inventory.Items.Any(i => i != null && i.Name == "Palantír"))
                 {
-                    MessageBox.Show("Musím sebou vzít ten palantír.");
-                    text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "out.mp3")));
+                    text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "end.mp3")));
                     text.Play();
+                    MessageBox.Show("Podařilo se mi získat palantír a vrátit ho na místo. Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře. Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
+                    Thread.Sleep(20000);
+                    Application.Current.Shutdown();
                 }
-                MessageBox.Show("Podařilo se mi získat palantír a vrátit ho na místo. Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře. Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
-                text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "end.mp3")));
+                MessageBox.Show("Musím sebou vzít ten palantír.");
+                text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "out.mp3")));
                 text.Play();
-                Application.Current.Shutdown();
             }
 
         }

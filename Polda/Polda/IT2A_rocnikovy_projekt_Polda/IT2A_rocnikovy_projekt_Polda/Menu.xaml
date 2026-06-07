@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT2A_rocnikovy_projekt_Polda"
         mc:Ignorable="d"
-        Title="Menu" Height="450" Width="800">
+        Title="Menu" Height="1080" Width="1820">
     <Grid>
-        <Button Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="48" Width="276" Background="#FF20D4AF" Opacity="0.85" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="3">
+        <Image Name="MapImage"
+               Source="/img/wizardTower.gif"
+               Stretch="Fill"/>
+        <Button Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click" Height="126" Width="780" Background="#FF20D4AF" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="3" Margin="0,379,0,0" FontSize="100" FontFamily="Script MT Bold">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -17,7 +20,18 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button Content="Nastavení" HorizontalAlignment="Center" Margin="0,259,0,0" VerticalAlignment="Top" Height="40" Width="276" Click="Button_Click_1"/>
+        <Button Content="Nastavení" HorizontalAlignment="Center" Margin="0,588,0,0" VerticalAlignment="Top" Height="115" Width="780" Click="Button_Click_1" FontFamily="Script MT Bold" FontSize="80"/>
+
+        <TextBlock HorizontalAlignment="Center" Margin="0,66,0,0" TextWrapping="Wrap" Text="Magická krádež" VerticalAlignment="Top" Width="1800" Height="256" FontSize="172" OpacityMask="Gray" Background="#336C0A8A" TextAlignment="Center" Panel.ZIndex="0" FontFamily="Script MT Bold">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFCC0560" Offset="0.802"/>
+                    <GradientStop Color="#FF7B8E54" Offset="0.133"/>
+                    <GradientStop Color="#FF336E9C" Offset="0.448"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+
 
     </Grid>
 </Window>
