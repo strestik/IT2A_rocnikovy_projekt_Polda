@@ -1,0 +1,34 @@
+﻿<Window x:Class="IT2A_rocnikovy_projekt_Polda.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT2A_rocnikovy_projekt_Polda"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="Settings" Height="1080" Width="1920">
+    <Grid>
+        <Image Name="MapImage"
+           Source="/img/settingsTower.gif"
+           Stretch="Fill"/>
+        <Button Content="Zpátky" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Height="101" Width="283" FontSize="70" Click="backButton_Click"/>
+
+        <Slider x:Name="MusicSlider" Minimum="1" Maximum="100" Value="8" 
+        Width="1600" HorizontalAlignment="Center" VerticalAlignment="Top" ValueChanged="MusicSlider_ValueChanged" Height="35" Margin="0,484,0,0" FontSize="72">
+            <Slider.LayoutTransform>
+                <ScaleTransform ScaleY="4"/>
+            </Slider.LayoutTransform>
+        </Slider>
+        <TextBlock Text="Hudba" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="100" Foreground="White" Height="135" Width="364" Margin="0,344,0,0" FontFamily="Sitka Small Semibold"/>
+
+        <Slider x:Name="VoiceSlider" Minimum="1" Maximum="300" Value="140" 
+        Width="1600" HorizontalAlignment="Center" VerticalAlignment="Top" 
+        Margin="0,742,0,0" ValueChanged="VoiceSlider_ValueChanged" Height="16">
+            <Slider.LayoutTransform>
+                <ScaleTransform ScaleY="4"/>
+            </Slider.LayoutTransform>
+        </Slider>
+        <TextBlock Text="Hlasy" HorizontalAlignment="Center" VerticalAlignment="Top" 
+           Margin="0,604,0,0" FontSize="100" Foreground="White" FontFamily="Sitka Small Semibold"/>
+    </Grid>
+</Window>

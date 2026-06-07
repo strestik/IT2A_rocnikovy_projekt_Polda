@@ -24,6 +24,7 @@
     <None Remove="img\inventary.png" />
     <None Remove="img\lowPolda.png" />
     <None Remove="img\mahou.png" />
+    <None Remove="img\menuButton.png" />
     <None Remove="img\Pankrac.png" />
     <None Remove="img\Polda.png" />
     <None Remove="img\potion.png" />
@@ -33,6 +34,7 @@
     <None Remove="img\scrollS.png" />
     <None Remove="img\scrollT.png" />
     <None Remove="img\sefirot.png" />
+    <None Remove="img\settingsTower.gif" />
     <None Remove="img\textil.png" />
     <None Remove="img\untitled.png" />
     <None Remove="img\wizardTower.gif" />
@@ -81,6 +83,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="img\menuButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\settingsTower.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="img\wizardTower.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

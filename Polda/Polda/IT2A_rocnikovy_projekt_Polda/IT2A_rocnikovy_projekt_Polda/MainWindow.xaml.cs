@@ -19,7 +19,6 @@ using System.Windows.Threading;
 namespace IT2A_rocnikovy_projekt_Polda
 {
     // TODO
-    //      - menu
     //      - návod
     //      - zprávy
     //      - go back tlačítko
@@ -34,6 +33,7 @@ namespace IT2A_rocnikovy_projekt_Polda
     //             - animace návodu jako rozbalujícího se svitku
     public partial class MainWindow : Window
     {
+        Menu menu;
         Random rnd = new Random();
         Item? heldItem;
         Pankrac pankrac = new Pankrac("Pankrác Moudrý", 0, 0, "Pankrac");
@@ -80,18 +80,21 @@ namespace IT2A_rocnikovy_projekt_Polda
         };
 
 
-        MediaPlayer background = new MediaPlayer() { Volume = 0.02 };
-        MediaPlayer text = new MediaPlayer() { Volume = 1.4 };
 
-        public MainWindow()
+        
+        public MediaPlayer background = new MediaPlayer();
+        public MediaPlayer text = new MediaPlayer(); 
+
+        public MainWindow(Menu menuWindow)
         {
+            menu = menuWindow;
             InitializeComponent();
             background.MediaEnded += (s, e) => { background.Position = TimeSpan.Zero; background.Play(); };
             background.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "back.mp3")));
             text.MediaOpened += (s, e) => text.Play();
             Loaded += MainWindow_Loaded;
         }
-
+        
 
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -366,7 +369,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                     text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "end.mp3")));
                     text.Play();
                     MessageBox.Show("Podařilo se mi získat palantír a vrátit ho na místo. Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře. Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
-                    Thread.Sleep(20000);
+                    Thread.Sleep(18000);
                     Application.Current.Shutdown();
                 }
                 MessageBox.Show("Musím sebou vzít ten palantír.");
@@ -475,6 +478,14 @@ namespace IT2A_rocnikovy_projekt_Polda
             pankrac.move(xPercent, yPercent);
 
             //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
+        }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            text.Stop();
+            background.Stop();
+            if (menu != null) menu.Show();
+            this.Hide();
         }
     }
 }

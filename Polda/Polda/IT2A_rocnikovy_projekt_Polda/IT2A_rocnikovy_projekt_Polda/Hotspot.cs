@@ -67,7 +67,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             acessable = acess;
             audioPath = audio;
 
-            polygon.Stroke = stroke ?? System.Windows.Media.Brushes.Red;
+            //polygon.Stroke = stroke ?? System.Windows.Media.Brushes.Red;
             polygon.Fill = System.Windows.Media.Brushes.Transparent;
             polygon.StrokeThickness = strokeThickness;
             polygon.HorizontalAlignment = HorizontalAlignment.Left;

@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT2A_rocnikovy_projekt_Polda"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="Menu" Height="1080" Width="1820">
     <Grid>
         <Image Name="MapImage"
                Source="/img/wizardTower.gif"
                Stretch="Fill"/>
-        <Button Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click" Height="126" Width="780" Background="#FF20D4AF" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="3" Margin="0,379,0,0" FontSize="100" FontFamily="Script MT Bold">
+        <Button Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" Click="StartButton_Click" Height="126" Width="780" Background="#FF20D4AF" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="3" Margin="0,379,0,0" FontSize="100" FontFamily="Script MT Bold">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -20,7 +21,7 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button Content="Nastavení" HorizontalAlignment="Center" Margin="0,588,0,0" VerticalAlignment="Top" Height="115" Width="780" Click="Button_Click_1" FontFamily="Script MT Bold" FontSize="80"/>
+        <Button Content="Nastavení" HorizontalAlignment="Center" Margin="0,588,0,0" VerticalAlignment="Top" Height="115" Width="780" Click="SetButton_Click" FontFamily="Script MT Bold" FontSize="80"/>
 
         <TextBlock HorizontalAlignment="Center" Margin="0,66,0,0" TextWrapping="Wrap" Text="Magická krádež" VerticalAlignment="Top" Width="1800" Height="256" FontSize="172" OpacityMask="Gray" Background="#336C0A8A" TextAlignment="Center" Panel.ZIndex="0" FontFamily="Script MT Bold">
             <TextBlock.Foreground>
