@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|c:\\users\\admin\\source\\repos\\strestik\\it2a_rocnikovy_projekt_polda\\polda\\polda\\it2a_rocnikovy_projekt_polda\\it2a_rocnikovy_projekt_polda\\menu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|solutionrelative:it2a_rocnikovy_projekt_polda\\menu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|c:\\users\\admin\\source\\repos\\strestik\\it2a_rocnikovy_projekt_polda\\polda\\polda\\it2a_rocnikovy_projekt_polda\\it2a_rocnikovy_projekt_polda\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|solutionrelative:it2a_rocnikovy_projekt_polda\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|c:\\users\\admin\\source\\repos\\strestik\\it2a_rocnikovy_projekt_polda\\polda\\polda\\it2a_rocnikovy_projekt_polda\\it2a_rocnikovy_projekt_polda\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|solutionrelative:it2a_rocnikovy_projekt_polda\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|c:\\users\\admin\\source\\repos\\strestik\\it2a_rocnikovy_projekt_polda\\polda\\polda\\it2a_rocnikovy_projekt_polda\\it2a_rocnikovy_projekt_polda\\menu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|solutionrelative:it2a_rocnikovy_projekt_polda\\menu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|c:\\users\\admin\\source\\repos\\strestik\\it2a_rocnikovy_projekt_polda\\polda\\polda\\it2a_rocnikovy_projekt_polda\\it2a_rocnikovy_projekt_polda\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|solutionrelative:it2a_rocnikovy_projekt_polda\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|c:\\users\\admin\\source\\repos\\strestik\\it2a_rocnikovy_projekt_polda\\polda\\polda\\it2a_rocnikovy_projekt_polda\\it2a_rocnikovy_projekt_polda\\menu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|solutionrelative:it2a_rocnikovy_projekt_polda\\menu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|c:\\users\\admin\\source\\repos\\strestik\\it2a_rocnikovy_projekt_polda\\polda\\polda\\it2a_rocnikovy_projekt_polda\\it2a_rocnikovy_projekt_polda\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|solutionrelative:it2a_rocnikovy_projekt_polda\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6A4EB27-E400-42B7-90E3-44E961497790}|IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda.csproj|c:\\users\\admin\\source\\repos\\strestik\\it2a_rocnikovy_projekt_polda\\polda\\polda\\it2a_rocnikovy_projekt_polda\\it2a_rocnikovy_projekt_polda\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,11 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\App.xaml",
               "RelativeDocumentMoniker": "IT2A_rocnikovy_projekt_Polda\\App.xaml",
@@ -62,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Menu.xaml",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\Menu.xaml",
               "RelativeDocumentMoniker": "IT2A_rocnikovy_projekt_Polda\\Menu.xaml",
@@ -74,13 +74,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Menu.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\Menu.xaml.cs",
               "RelativeDocumentMoniker": "IT2A_rocnikovy_projekt_Polda\\Menu.xaml.cs",
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\Menu.xaml.cs",
               "RelativeToolTip": "IT2A_rocnikovy_projekt_Polda\\Menu.xaml.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAowBsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAcwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-06T23:56:47.606Z",
               "EditorCaption": ""
@@ -123,13 +123,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\strestik\\IT2A_rocnikovy_projekt_Polda\\Polda\\Polda\\IT2A_rocnikovy_projekt_Polda\\IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs",
               "RelativeToolTip": "IT2A_rocnikovy_projekt_Polda\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAE0BAAAAAAAAAAAmwHEBAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAowPAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-27T20:43:57.1Z",
               "EditorCaption": ""

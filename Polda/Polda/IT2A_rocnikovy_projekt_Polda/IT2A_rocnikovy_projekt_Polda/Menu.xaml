@@ -17,7 +17,7 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button Content="Nastavení" HorizontalAlignment="Center" Margin="0,259,0,0" VerticalAlignment="Top" Height="40" Width="276"/>
+        <Button Content="Nastavení" HorizontalAlignment="Center" Margin="0,259,0,0" VerticalAlignment="Top" Height="40" Width="276" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

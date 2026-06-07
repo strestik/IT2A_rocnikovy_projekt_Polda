@@ -105,20 +105,20 @@ namespace IT2A_rocnikovy_projekt_Polda
             Canvas.SetLeft(pankrac.pankrac, -200);
             Canvas.SetTop(pankrac.pankrac, 600);
 
-            OverlayCanvas.Children.Add(inventory.InvetoryImage);
-            Canvas.SetZIndex(inventory.InvetoryImage, 2);
-
             foreach (Item item in items)
             {
                 item.ItemImage.Tag = item;
                 OverlayCanvas.Children.Add(item.ItemImage);
-                Canvas.SetZIndex(item.ItemImage, 2);
+                Canvas.SetZIndex(item.ItemImage, 1);
                 if (item.Name == "Rozbitý lektvar") Canvas.SetZIndex(item.ItemImage, 0);
                 if (item.Name == "Cár pláště") Canvas.SetZIndex(item.ItemImage, 0);
                 item.ItemImage.MouseDown += Item_MouseDown;
             }
-            inventory.InvetoryImage.MouseDown += Inventory_MouseDown;
             OverlayCanvas.MouseUp += Item_MouseUp;
+
+            OverlayCanvas.Children.Add(inventory.InvetoryImage);
+            Canvas.SetZIndex(inventory.InvetoryImage, 2);
+            inventory.InvetoryImage.MouseDown += Inventory_MouseDown;
 
             OverlayCanvas.MouseMove += MouseMove;
         }
@@ -213,7 +213,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 point.acessable = true;
                 polygons[8].init = "Rituální instrukce se znaky a popisky.";
             }
-            if (!point.acessable && point.Name == "Rituální kruh" || point.Name == "Magický inkust" || point.Name == "Cár pláště") 
+            if (!point.acessable && point.Name == "Rituální kruh" || point.Name == "Magický inkoust" || point.Name == "Cár pláště") 
             {
                 point.acessable = true;
             }
@@ -234,6 +234,11 @@ namespace IT2A_rocnikovy_projekt_Polda
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "ingredients.mp3")));
                 text.Play();
 
+                //MessageBox.Show($"{polygons[0].Name} {polygons[0].acessable.ToString()}");
+                //MessageBox.Show($"{polygons[1].Name} {polygons[1].acessable.ToString()}");
+                //MessageBox.Show($"{polygons[17].Name} {polygons[17].acessable.ToString()}");
+                //MessageBox.Show($"{polygons[10].Name} {polygons[10].acessable.ToString()}");
+
             }
             if (polygons[0].acessable && polygons[1].acessable && polygons[17].acessable && polygons[10].acessable)
             {
@@ -247,6 +252,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "contemplation.mp3")));
                 text.Play();
                 // zde případný časovač na vypršení spojení cáru pláště s pečetí
+                Thread.Sleep(2000);
                 if (polygons.Count > 10)
                 {
                     Hotspot target = polygons[10];
@@ -378,7 +384,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 return;
 
             inventory.VisibilityToggle(pankrac.pankrac);
-            Canvas.SetZIndex(inventory.InvetoryImage, 1);
+            Canvas.SetZIndex(inventory.InvetoryImage, 2);
         }
 
 
@@ -447,7 +453,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                     if (heldItem != null) heldItem.ItemImage.IsHitTestVisible = true;
                     Mouse.Capture(null);
                     inventory.AddItem(heldItem);
-                    Canvas.SetZIndex(heldItem.ItemImage, 997);
+                    Canvas.SetZIndex(heldItem.ItemImage, 3);
                     heldItem = null;
                 }
             }

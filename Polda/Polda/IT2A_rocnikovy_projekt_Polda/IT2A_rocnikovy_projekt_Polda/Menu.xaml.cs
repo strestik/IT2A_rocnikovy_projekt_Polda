@@ -29,5 +29,10 @@ namespace IT2A_rocnikovy_projekt_Polda
             new MainWindow().Show();
             this.Close();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
