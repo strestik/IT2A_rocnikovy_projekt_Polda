@@ -19,7 +19,7 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace IT2A_rocnikovy_projekt_Polda
 {
-    // TODO- návod
+    // TODO - návod
     //      - přidat aspoň druhou scénu (místnost s teleportem, odtud zjistí jak použít grimoair) nový xamel?
     //      - prohra na čas?
 
@@ -128,7 +128,13 @@ namespace IT2A_rocnikovy_projekt_Polda
             inventory.InvetoryImage.MouseDown += Inventory_MouseDown;
 
             OverlayCanvas.MouseMove += MouseMove;
+
+            // tutorial
+            Text_Timed("Tak jsem tady. Ve věži toho zloděje. Je prázdná, ale vypadá, jako by ji někdo opustil ve spěchu. Nejspíš se sem vydal rovnou včera večer, hned po té krádeži. Musel to mít dobře připravené. Všechno tady je rozházené. To naznačuje, že jen vzal, co potřeboval. Ale zatím si nejsem jistý, jak se dostal ven. Přece ho tu noc pronásledovali. Byly to jen dvě minuty, ale když se sem dostali, už nenašli nic. A teď je to na mě, abych zjistil, jak zpět navrátit ukradený majetek. No tak abych se do toho dal. Nejprv bych se měl porozhlédnout kolem a zjistit co nejvíce informací.");
+            text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "tutorial.mp3")));
+            text.Play();
         }
+
         public void MouseMove(object sender, MouseEventArgs e)
         {
             var pos = e.GetPosition(MapImage);
@@ -519,7 +525,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             if (text.Length > 92)
             {
-                DisplayText.FontSize =  46.0 / (text.Length / 88.0);
+                DisplayText.FontSize =  (46.0 / (text.Length / 88.0)) + text.Length * 0.02;
             }
 
             DisplayText.Text = text;
