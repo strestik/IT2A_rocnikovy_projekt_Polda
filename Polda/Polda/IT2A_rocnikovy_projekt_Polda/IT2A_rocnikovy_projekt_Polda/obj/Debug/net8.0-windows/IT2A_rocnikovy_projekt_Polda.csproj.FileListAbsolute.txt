@@ -110,3 +110,5 @@ C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\music\menu.mp3
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\obj\Debug\net8.0-windows\Settings.g.cs
 C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\obj\Debug\net8.0-windows\Settings.baml
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\music\textAppear.mp3
+C:\Users\Admin\source\repos\strestik\IT2A_rocnikovy_projekt_Polda\Polda\Polda\IT2A_rocnikovy_projekt_Polda\IT2A_rocnikovy_projekt_Polda\bin\Debug\net8.0-windows\music\textDisappear.mp3

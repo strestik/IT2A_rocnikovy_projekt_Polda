@@ -80,6 +80,10 @@
     <None Remove="logs\zdroj.mp3" />
 	<None Remove="music\back.mp3" />
 	<None Remove="music\menu.mp3" />
+	<None Remove="music\textAppear .mp3" />
+	<None Remove="music\textAppear.mp3" />
+	<None Remove="music\textDisappear .mp3" />
+	<None Remove="music\textDisappear.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -150,6 +154,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="music\menu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="music\textAppear.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="music\textDisappear.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

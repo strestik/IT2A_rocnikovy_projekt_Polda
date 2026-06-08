@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Shapes;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using static System.Formats.Asn1.AsnWriter;
-using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 using System.Windows.Threading;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace IT2A_rocnikovy_projekt_Polda
 {
-    // TODO
-    //      - návod
-    //      - zprávy
-    //      - go back tlačítko
+    // TODO- návod
     //      - přidat aspoň druhou scénu (místnost s teleportem, odtud zjistí jak použít grimoair) nový xamel?
     //      - prohra na čas?
 
@@ -31,6 +29,7 @@ namespace IT2A_rocnikovy_projekt_Polda
     //             - animace interakce s hotspoty
     //             - konstantní animace hýbajících se věcí (např. plameny na svíčkách, vířící se lektvar atd.)
     //             - animace návodu jako rozbalujícího se svitku
+    //             - přidat popisek po najetí myši na item nebo hotspot
     public partial class MainWindow : Window
     {
         Menu menu;
@@ -81,9 +80,10 @@ namespace IT2A_rocnikovy_projekt_Polda
 
 
 
-        
-        public MediaPlayer background = new MediaPlayer();
-        public MediaPlayer text = new MediaPlayer(); 
+
+        public MediaPlayer background = new MediaPlayer() { Volume = 0.08 };
+        public MediaPlayer text = new MediaPlayer() { Volume = 2.1 };
+        public MediaPlayer effect = new MediaPlayer() { Volume = 0.04 };
 
         public MainWindow(Menu menuWindow)
         {
@@ -92,15 +92,18 @@ namespace IT2A_rocnikovy_projekt_Polda
             background.MediaEnded += (s, e) => { background.Position = TimeSpan.Zero; background.Play(); };
             background.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "back.mp3")));
             text.MediaOpened += (s, e) => text.Play();
+            effect.MediaOpened += (s, e) => text.Play();
             Loaded += MainWindow_Loaded;
         }
-        
+
 
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Draw();
             background.Play();
+
+            textTimer.Tick += Text_Timed_Check;
 
             OverlayCanvas.Children.Add(pankrac.pankrac);
             Canvas.SetZIndex(pankrac.pankrac, 997);
@@ -189,12 +192,12 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", point.audioPath)));
             text.Play();
-            MessageBox.Show(point.init);
+            Text_Timed(point.init);
 
-            if (point.Name == "Rozbitý lektvar" && !polygons[7].acessable )
+            if (point.Name == "Rozbitý lektvar" && !polygons[7].acessable)
             {
                 polygons[7].acessable = true;
-                MessageBox.Show("Kde se tady asi tak vzal? Vypadá to, že budu potřebovat nový. Z tohohle už kromě střepů moc nezbývá.");
+                Text_Timed("Kde se tady asi tak vzal? Vypadá to, že budu potřebovat nový. Z tohohle už kromě střepů moc nezbývá.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "brokePotion.mp3")));
                 text.Play();
             }
@@ -204,10 +207,10 @@ namespace IT2A_rocnikovy_projekt_Polda
                 if (polygons.Count > 9)
                 {
                     Hotspot target = polygons[9];
-                    if (target?.polygon != null)  OverlayCanvas.Children.Remove(target.polygon);
+                    if (target?.polygon != null) OverlayCanvas.Children.Remove(target.polygon);
                 }
                 Canvas.SetZIndex(items[7].ItemImage, 998);
-                MessageBox.Show("Ahhaa - tak tady se dělají lektvary!");
+                Text_Timed("Ahhaa - tak tady se dělají lektvary!");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "aparature.mp3")));
                 text.Play();
             }
@@ -217,7 +220,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 point.acessable = true;
                 polygons[8].init = "Rituální instrukce se znaky a popisky.";
             }
-            if (!point.acessable && point.Name == "Rituální kruh" || point.Name == "Magický inkoust" || point.Name == "Cár pláště") 
+            if (!point.acessable && point.Name == "Rituální kruh" || point.Name == "Magický inkoust" || point.Name == "Cár pláště")
             {
                 point.acessable = true;
             }
@@ -234,22 +237,23 @@ namespace IT2A_rocnikovy_projekt_Polda
                 Canvas.SetZIndex(polygons[5].polygon, 2);
                 polygons[6].acessable = true;
                 Canvas.SetZIndex(polygons[6].polygon, 2);
-                MessageBox.Show("Vypadá to, že potřebuju najít všechny tyto předměty pro zprovoznění rituálu.");
+
+                Text_Timed("Vypadá to, že potřebuju najít všechny tyto předměty pro zprovoznění rituálu.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "ingredients.mp3")));
                 text.Play();
                 known = false;
             }
             if (polygons[0].acessable && polygons[1].acessable && polygons[17].acessable && polygons[10].acessable)
             {
-                MessageBox.Show("Nejspíš musím rozestavět předměty z návodu na ten magický kruh podle jejich rozložení na návodu.");
-                MessageBox.Show("Vypadá to, že náš zloděj se rozhodl ukrýt palantír na bezpečné místo, aby se pro něj mohl vrátit, až odejdu.");
-                MessageBox.Show("Nejspíš použil rituální pečetící magii, aby ho poslal do vnějších prostor mimo naši existenci.");
-                MessageBox.Show("Do těchto míst se normálně nedá dostat, jen převelice mocnými čáry.");
-                MessageBox.Show("A vzhledem k tomu, že použil inkoust, má na odcizený předmět dosah jen on.");
-                MessageBox.Show("Ale při psaní smlouvy bylo účinkům inkoustu vystaveno celé jejich tělo a já jsem už dříve našel kus odtrženého pláště.");
-                MessageBox.Show("Mohl bych ho zkusit použít jako alternativu pro klíč k rituálu.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "contemplation.mp3")));
                 text.Play();
+                Text_Timed("Nejspíš musím rozestavět předměty z návodu na ten magický kruh podle jejich rozložení na návodu.");
+                Text_Timed("Vypadá to, že náš zloděj se rozhodl ukrýt palantír na bezpečné místo, aby se pro něj mohl vrátit, až odejdu.");
+                Text_Timed("Nejspíš použil rituální pečetící magii, aby ho poslal do vnějších prostor mimo naši existenci.");
+                Text_Timed("Do těchto míst se normálně nedá dostat, jen převelice mocnými čáry.");
+                Text_Timed("A vzhledem k tomu, že použil inkoust, má na odcizený předmět dosah jen on.");
+                Text_Timed("Ale při psaní smlouvy bylo účinkům inkoustu vystaveno celé jejich tělo a já jsem už dříve našel kus odtrženého pláště.");
+                Text_Timed("Mohl bych ho zkusit použít jako alternativu pro klíč k rituálu.");
                 // zde případný časovač na vypršení spojení cáru pláště s pečetí
                 Thread.Sleep(2000);
                 if (polygons.Count > 10)
@@ -277,7 +281,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Lektvar divoké magie"));
                 polygons[2].acessable = false;
                 Canvas.SetZIndex(polygons[2].polygon, 2);
-                MessageBox.Show("Vypadá to, že lektvar patří sem. Měl bych ho sem dát."); 
+                Text_Timed("Vypadá to, že lektvar patří sem. Měl bych ho sem dát.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "potionMisto.mp3")));
                 text.Play();
 
@@ -291,7 +295,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Grimoire"));
                 polygons[3].acessable = false;
                 Canvas.SetZIndex(polygons[3].polygon, 2);
-                MessageBox.Show("Vypadá to, že grimoire patří sem. Měl bych ho sem dát.");
+                Text_Timed("Vypadá to, že grimoire patří sem. Měl bych ho sem dát.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "grimoireMisto.mp3")));
                 text.Play();
 
@@ -305,7 +309,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                 inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Sefirot"));
                 polygons[4].acessable = false;
                 Canvas.SetZIndex(polygons[4].polygon, 2);
-                MessageBox.Show("Vypadá to, že Sefirot patří sem. Měl bych ho sem dát.");
+                Text_Timed("Vypadá to, že Sefirot patří sem. Měl bych ho sem dát.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "sefirotMisto.mp3")));
                 text.Play();
 
@@ -314,12 +318,12 @@ namespace IT2A_rocnikovy_projekt_Polda
                 Canvas.SetTop(items[1].ItemImage, polygons[4].YPercent0 - 70);
                 itemsToBePlaced--;
             }
-            if ((point.Name == "Místo pro Svitek času") && inventory.Items.Any(i => i != null && i.Name == "Svitek času")) 
+            if ((point.Name == "Místo pro Svitek času") && inventory.Items.Any(i => i != null && i.Name == "Svitek času"))
             {
                 inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Svitek času"));
                 polygons[5].acessable = false;
                 Canvas.SetZIndex(polygons[5].polygon, 2);
-                MessageBox.Show("Vypadá to, že svitek času patří sem. Měl bych ho sem dát.");
+                Text_Timed("Vypadá to, že svitek času patří sem. Měl bych ho sem dát.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "svitekTMisto.mp3")));
                 text.Play();
 
@@ -328,12 +332,12 @@ namespace IT2A_rocnikovy_projekt_Polda
                 Canvas.SetTop(items[2].ItemImage, polygons[5].YPercent0 - 80);
                 itemsToBePlaced--;
             }
-            if (point.Name == "Místo pro Svitek prostoru" && inventory.Items.Any(i => i != null && i.Name == "Svitek prostoru")) 
+            if (point.Name == "Místo pro Svitek prostoru" && inventory.Items.Any(i => i != null && i.Name == "Svitek prostoru"))
             {
                 inventory.RemoveItem(inventory.Items.First(i => i != null && i.Name == "Svitek prostoru"));
                 polygons[6].acessable = false;
                 Canvas.SetZIndex(polygons[6].polygon, 2);
-                MessageBox.Show("Vypadá to, že svitek prostoru patří sem. Měl bych ho sem dát.");
+                Text_Timed("Vypadá to, že svitek prostoru patří sem. Měl bych ho sem dát.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "svitekSMisto.mp3")));
                 text.Play();
 
@@ -350,8 +354,7 @@ namespace IT2A_rocnikovy_projekt_Polda
                     items[0].Collectable = true;
                     items[0].ItemImage.Visibility = Visibility.Visible;
                     Canvas.SetZIndex(items[0].ItemImage, 997);
-                    MessageBox.Show("Wow... to je on, podařilo se to!!!");
-                    MessageBox.Show("Teď ho musím jít vrátit.");
+                    Text_Timed("Wow... to je on, podařilo se to!!! Teď ho musím jít vrátit.");
                     text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "aquired.mp3")));
                     text.Play();
 
@@ -366,13 +369,13 @@ namespace IT2A_rocnikovy_projekt_Polda
             {
                 if (inventory.Items.Any(i => i != null && i.Name == "Palantír"))
                 {
+                    Text_Timed("Podařilo se mi získat palantír a vrátit ho na místo. Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře. Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
                     text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "end.mp3")));
                     text.Play();
-                    MessageBox.Show("Podařilo se mi získat palantír a vrátit ho na místo. Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře. Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
-                    Thread.Sleep(18000);
+                    Thread.Sleep(19000);
                     Application.Current.Shutdown();
                 }
-                MessageBox.Show("Musím sebou vzít ten palantír.");
+                Text_Timed("Musím sebou vzít ten palantír.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "out.mp3")));
                 text.Play();
             }
@@ -409,6 +412,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             pankrac.move(pos.X, pos.Y);
             text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "itemlogs", point.audioPath)));
             text.Play();
+            Text_Timed(point.Description);
 
             Mouse.Capture(OverlayCanvas);
 
@@ -465,17 +469,20 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             double xPercent = pos.X;
             double yPercent = pos.Y;
-            
+
         }
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             inventory.VisibilityOff((pankrac.pankrac));
-            var pos = e.GetPosition(MapImage);  
+            var pos = e.GetPosition(MapImage);
 
             double xPercent = pos.X;
             double yPercent = pos.Y;
 
             pankrac.move(xPercent, yPercent);
+
+
+            //Text_Timed("Nejspíše úniková cesta hledaného zloděje.Vedou do prázdna, takže se musel teleportovat pryč.", 10); //96
 
             //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
         }
@@ -486,6 +493,58 @@ namespace IT2A_rocnikovy_projekt_Polda
             background.Stop();
             if (menu != null) menu.Show();
             this.Hide();
+        }
+
+        public DispatcherTimer textTimer = new DispatcherTimer();
+        public DateTime startTime;
+        public double Time = 10;
+        public bool IsActiveRunning = false;
+        public void Text_Timed(string text)
+        {
+            Text_Timed_Start(text);
+            Time = text.Length / 10;
+        }
+
+        public void Text_Timed_Start(string text)
+        {
+            if (textTimer == null) return;
+            if (IsActiveRunning) return;
+            textTimer.Start();
+            IsActiveRunning = true;
+            effect.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "textAppear.mp3")));
+            effect.Play();
+            startTime = DateTime.Now;
+            DisplayBlock.Visibility = Visibility.Visible;
+            DisplayText.Visibility = Visibility.Visible;
+
+            if (text.Length > 92)
+            {
+                DisplayText.FontSize =  46.0 / (text.Length / 88.0);
+            }
+
+            DisplayText.Text = text;
+
+            // // Udělat to aby to dalo vícekrát text podle délky a tké přidělilo čas
+            //for (int i = 0; i < text.Length; i += 96)
+            //    if (text.Length > i + 96)
+            //    {
+            //        DisplayText.Text = text.Substring(i, i + 96);
+            //        Time = time / (text.Length / 96);
+            //    }
+        }
+
+        public void Text_Timed_Check(object sender, EventArgs e)
+        {
+            if (!textTimer.IsEnabled) return;
+            if ((DateTime.Now - startTime).TotalSeconds >= Time)
+            {
+                textTimer.Stop();
+                effect.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "textDisappear.mp3")));
+                effect.Play();
+                DisplayBlock.Visibility = Visibility.Collapsed;
+                DisplayText.Visibility = Visibility.Collapsed;
+                IsActiveRunning = false;
+            }
         }
     }
 }

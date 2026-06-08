@@ -21,7 +21,7 @@
         </Slider>
         <TextBlock Text="Hudba" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="100" Foreground="White" Height="135" Width="364" Margin="0,344,0,0" FontFamily="Sitka Small Semibold"/>
 
-        <Slider x:Name="VoiceSlider" Minimum="1" Maximum="300" Value="140" 
+        <Slider x:Name="VoiceSlider" Minimum="1" Maximum="300" Value="210" 
         Width="1600" HorizontalAlignment="Center" VerticalAlignment="Top" 
         Margin="0,742,0,0" ValueChanged="VoiceSlider_ValueChanged" Height="16">
             <Slider.LayoutTransform>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="None"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1920">
     <Grid>
         <Image Name="MapImage"
        Source="/img/room.png"
@@ -20,5 +20,16 @@
                 <ImageBrush ImageSource="/img/menuButton.png"/>
             </Button.Background>
         </Button>
+        
+        <Rectangle x:Name="DisplayBlock" Margin="360,10,490,885" Fill="#D8DAA454" StrokeThickness="10" Panel.ZIndex="3" Visibility="Collapsed">
+            <Rectangle.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6F3B10" Offset="0.429"/>
+                    <GradientStop Color="#F2A05719" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Stroke>
+        </Rectangle>
+        <TextBlock x:Name="DisplayText" HorizontalAlignment="Left" Margin="380,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="145" Width="1030" Panel.ZIndex="4" FontSize="46" UseLayoutRounding="True" FontFamily="Palatino Linotype" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Collapsed"/>
+
     </Grid>
 </Window>
