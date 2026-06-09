@@ -130,7 +130,12 @@ namespace IT2A_rocnikovy_projekt_Polda
             OverlayCanvas.MouseMove += MouseMove;
 
             // tutorial
-            Text_Timed("Tak jsem tady. Ve věži toho zloděje. Je prázdná, ale vypadá, jako by ji někdo opustil ve spěchu. Nejspíš se sem vydal rovnou včera večer, hned po té krádeži. Musel to mít dobře připravené. Všechno tady je rozházené. To naznačuje, že jen vzal, co potřeboval. Ale zatím si nejsem jistý, jak se dostal ven. Přece ho tu noc pronásledovali. Byly to jen dvě minuty, ale když se sem dostali, už nenašli nic. A teď je to na mě, abych zjistil, jak zpět navrátit ukradený majetek. No tak abych se do toho dal. Nejprv bych se měl porozhlédnout kolem a zjistit co nejvíce informací.");
+            Text_Timed("Tak jsem tady. Ve věži toho zloděje.");
+            Text_Timed("Je prázdná, ale vypadá, jako by ji někdo opustil ve spěchu. Nejspíš se sem vydal rovnou včera večer, hned po té krádeži.");
+            Text_Timed("Musel to mít dobře připravené. Všechno tady je rozházené. To naznačuje, že jen vzal, co potřeboval.");
+            Text_Timed("Ale zatím si nejsem jistý, jak se dostal ven. Přece ho tu noc pronásledovali. Byly to jen dvě minuty, ale když se sem dostali, už nenašli nic.");
+            Text_Timed("A teď je to na mě, abych zjistil, jak zpět navrátit ukradený majetek. No tak abych se do toho dal.");
+            Text_Timed("Nejprv bych se měl porozhlédnout kolem a zjistit co nejvíce informací.");
             text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "tutorial.mp3")));
             text.Play();
         }
@@ -505,10 +510,28 @@ namespace IT2A_rocnikovy_projekt_Polda
         public DateTime startTime;
         public double Time = 10;
         public bool IsActiveRunning = false;
+        Queue<string> messageQueue = new Queue<string>();
+
         public void Text_Timed(string text)
         {
-            Text_Timed_Start(text);
-            Time = text.Length / 10;
+            if (!messageQueue.Contains(text))
+            {
+                messageQueue.Enqueue(text);
+                string next = messageQueue.Peek();
+                Time = next.Length / 12;//(10 + (next.Length * 0.03) );
+            }
+            if (!IsActiveRunning)
+            {
+                if (messageQueue.Count > 0)
+                {
+                    string next = messageQueue.Dequeue();
+                    if (next != null)
+                    {
+                        Time = next.Length / 12;//(10 + (next.Length * 0.03));
+                        Text_Timed_Start(next);
+                    }
+                }
+            }
         }
 
         public void Text_Timed_Start(string text)
@@ -522,6 +545,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             startTime = DateTime.Now;
             DisplayBlock.Visibility = Visibility.Visible;
             DisplayText.Visibility = Visibility.Visible;
+            
 
             if (text.Length > 92)
             {
@@ -550,7 +574,16 @@ namespace IT2A_rocnikovy_projekt_Polda
                 DisplayBlock.Visibility = Visibility.Collapsed;
                 DisplayText.Visibility = Visibility.Collapsed;
                 IsActiveRunning = false;
+                if (messageQueue.Count > 0)
+                {
+                    string next = messageQueue.Dequeue();
+                    if (next != null)
+                    {
+                        Time = next.Length / 12;//(10 + (next.Length * 0.03));
+                        Text_Timed_Start(next);
+                    }
             }
         }
     }
+}
 }
