@@ -19,11 +19,9 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace IT2A_rocnikovy_projekt_Polda
 {
-    // TODO - návod
-    //      - přidat aspoň druhou scénu (místnost s teleportem, odtud zjistí jak použít grimoair) nový xamel?
-    //      - prohra na čas?
-
-    // future TODO - animace chození
+    // future TODO - přidat aspoň druhou scénu (místnost s teleportem, odtud zjistí jak použít grimoair) nový xamel?
+    //             - prohra na čas?
+    //             - animace chození
     //             - animace sbírání věcí
     //             - animace používání věcí
     //             - animace interakce s hotspoty
@@ -208,7 +206,8 @@ namespace IT2A_rocnikovy_projekt_Polda
             if (point.Name == "Rozbitý lektvar" && !polygons[7].acessable)
             {
                 polygons[7].acessable = true;
-                Text_Timed("Kde se tady asi tak vzal? Vypadá to, že budu potřebovat nový. Z tohohle už kromě střepů moc nezbývá.");
+                Text_Timed("Kde se tady asi tak vzal? Vypadá to, že budu potřebovat nový.");
+                Text_Timed("Z tohohle už kromě střepů moc nezbývá.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "brokePotion.mp3")));
                 text.Play();
             }
@@ -261,8 +260,8 @@ namespace IT2A_rocnikovy_projekt_Polda
                 Text_Timed("Nejspíš musím rozestavět předměty z návodu na ten magický kruh podle jejich rozložení na návodu.");
                 Text_Timed("Vypadá to, že náš zloděj se rozhodl ukrýt palantír na bezpečné místo, aby se pro něj mohl vrátit, až odejdu.");
                 Text_Timed("Nejspíš použil rituální pečetící magii, aby ho poslal do vnějších prostor mimo naši existenci.");
-                Text_Timed("Do těchto míst se normálně nedá dostat, jen převelice mocnými čáry. A vzhledem k tomu, že použil inkoust,");
-                Text_Timed(" má na odcizený předmět dosah jen on.");
+                Text_Timed("Do těchto míst se normálně nedá dostat, jen převelice mocnými čáry.");
+                Text_Timed("A vzhledem k tomu, že použil inkoust, má na odcizený předmět dosah jen on.");
                 Text_Timed("Ale při psaní smlouvy bylo účinkům inkoustu vystaveno celé jejich tělo a já jsem už dříve našel kus odtrženého pláště.");
                 Text_Timed("Mohl bych ho zkusit použít jako alternativu pro klíč k rituálu.");
                 // zde případný časovač na vypršení spojení cáru pláště s pečetí
@@ -380,7 +379,16 @@ namespace IT2A_rocnikovy_projekt_Polda
             {
                 if (inventory.Items.Any(i => i != null && i.Name == "Palantír"))
                 {
-                    Text_Timed("Podařilo se mi získat palantír a vrátit ho na místo. Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře. Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
+                    messageQueue.Clear();
+                    textTimer.Stop();
+                    DisplayBlock.Visibility = Visibility.Collapsed;
+                    DisplayText.Visibility = Visibility.Collapsed;
+                    IsActiveRunning = false;
+
+                    Text_Timed("Podařilo se mi získat palantír a vrátit ho na místo.");
+                    Text_Timed("Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře.");
+                    Text_Timed("Jenom my vrtá hlavou, kde se asi nachází zloděj");
+                    Text_Timed("a co s ním chtěl když ho byl ochotný tak dobře schovat?");
                     text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "end.mp3")));
                     text.Play();
                     Thread.Sleep(19000);
@@ -427,7 +435,6 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             Mouse.Capture(OverlayCanvas);
 
-            // safely clear previous heldItem visuals if any
             if (heldItem != null)
                 heldItem.ItemImage.IsHitTestVisible = true;
 
@@ -493,7 +500,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             pankrac.move(xPercent, yPercent);
 
 
-            //Text_Timed("Nejspíše úniková cesta hledaného zloděje.Vedou do prázdna, takže se musel teleportovat pryč.", 10); //96
+            //Text_Timed(""); //96
 
             //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
         }
@@ -514,7 +521,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         public void Text_Timed(string text)
         {
-            if (!messageQueue.Contains(text) || messageQueue.Count > 7)
+            if (!messageQueue.Contains(text) && messageQueue.Count < 7)
             {
                 messageQueue.Enqueue(text);
                 string next = messageQueue.Peek();
