@@ -80,9 +80,9 @@ namespace IT2A_rocnikovy_projekt_Polda
 
 
 
-        public MediaPlayer background = new MediaPlayer() { Volume = 0.08 };
-        public MediaPlayer text = new MediaPlayer() { Volume = 2.1 };
-        public MediaPlayer effect = new MediaPlayer() { Volume = 0.04 };
+        public MediaPlayer background = new MediaPlayer();
+        public MediaPlayer text = new MediaPlayer();
+        public MediaPlayer effect = new MediaPlayer();
 
         public MainWindow(Menu menuWindow)
         {
@@ -91,7 +91,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             background.MediaEnded += (s, e) => { background.Position = TimeSpan.Zero; background.Play(); };
             background.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "back.mp3")));
             text.MediaOpened += (s, e) => text.Play();
-            effect.MediaOpened += (s, e) => text.Play();
+            effect.MediaOpened += (s, e) => effect.Play();
             Loaded += MainWindow_Loaded;
         }
 
@@ -100,6 +100,9 @@ namespace IT2A_rocnikovy_projekt_Polda
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Draw();
+            background.Volume = 0.04;
+            text.Volume = 2.6;
+            effect.Volume = 0.04;
             background.Play();
 
             textTimer.Tick += Text_Timed_Check;
@@ -388,20 +391,19 @@ namespace IT2A_rocnikovy_projekt_Polda
 
                     Text_Timed("Podařilo se mi získat palantír a vrátit ho na místo.");
                     Text_Timed("Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře.");
-                    Text_Timed("Jenom my vrtá hlavou, kde se asi nachází zloděj");
-                    Text_Timed("a co s ním chtěl když ho byl ochotný tak dobře schovat?");
+                    Text_Timed("Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
+                    //Text_Timed("");
                     text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "end.mp3")));
                     text.Play();
                     //Thread.Sleep(19000);
                     //Application.Current.Shutdown();
-                    //text.Stop();
-                    //background.Stop();
-                    //if (menu != null) menu.Show();
-                    //this.Hide();
                 }
-                Text_Timed("Musím sebou vzít ten palantír.");
-                text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "out.mp3")));
-                text.Play();
+                else
+                {
+                    Text_Timed("Musím sebou vzít ten palantír.");
+                    text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "out.mp3")));
+                    text.Play();
+                }
             }
 
         }
@@ -512,8 +514,10 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
+            messageQueue.Clear();
             text.Stop();
             background.Stop();
+            effect.Stop();
             if (menu != null) menu.Show();
             this.Hide();
         }
@@ -581,13 +585,13 @@ namespace IT2A_rocnikovy_projekt_Polda
             if ((DateTime.Now - startTime).TotalSeconds >= Time)
             {
                 textTimer.Stop();
-                effect.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "textDisappear.mp3")));
-                effect.Play();
                 DisplayBlock.Visibility = Visibility.Collapsed;
                 DisplayText.Visibility = Visibility.Collapsed;
                 IsActiveRunning = false;
                 if (messageQueue.Count > 0)
                 {
+                    effect.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "music", "textDisappear.mp3")));
+                    effect.Play();
                     string next = messageQueue.Dequeue();
                     if (next != null)
                     {
@@ -595,9 +599,9 @@ namespace IT2A_rocnikovy_projekt_Polda
                         Text_Timed_Start(next);
                     }
                 }
-                if (inventory.Items.Any(i => i != null && i.Name == "Palantír") && messageQueue.Count == 0)
+                if (inventory.Items.Any(i => i != null && i.Name == "Palantír") && DisplayBlock.Visibility == Visibility.Collapsed)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(5000);
                     Application.Current.Shutdown();
                 }
             }

@@ -23,7 +23,7 @@
         </Button>
         <Button Content="Nastavení" HorizontalAlignment="Center" Margin="0,588,0,0" VerticalAlignment="Top" Height="115" Width="780" Click="SetButton_Click" FontFamily="Script MT Bold" FontSize="80"/>
 
-        <TextBlock HorizontalAlignment="Center" Margin="0,66,0,0" TextWrapping="Wrap" Text="Magická krádež" VerticalAlignment="Top" Width="1800" Height="256" FontSize="172" OpacityMask="Gray" Background="#336C0A8A" TextAlignment="Center" Panel.ZIndex="0" FontFamily="Script MT Bold">
+        <TextBlock HorizontalAlignment="Center" Margin="0,66,0,0" TextWrapping="Wrap" Text="Magická krádež" VerticalAlignment="Top" Width="2489" Height="256" FontSize="172" OpacityMask="Gray" Background="#336C0A8A" TextAlignment="Center" Panel.ZIndex="0" FontFamily="Script MT Bold">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFCC0560" Offset="0.802"/>
