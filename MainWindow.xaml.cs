@@ -28,6 +28,7 @@ namespace IT2A_rocnikovy_projekt_Polda
     //             - konstantní animace hýbajících se věcí (např. plameny na svíčkách, vířící se lektvar atd.)
     //             - animace návodu jako rozbalujícího se svitku
     //             - přidat popisek po najetí myši na item nebo hotspot
+    //             - možnsot zvíraznění klikatelných objektů, hotspotů i itemů
     public partial class MainWindow : Window
     {
         Menu menu;
@@ -379,10 +380,10 @@ namespace IT2A_rocnikovy_projekt_Polda
             {
                 if (inventory.Items.Any(i => i != null && i.Name == "Palantír"))
                 {
-                    messageQueue.Clear();
-                    textTimer.Stop();
                     DisplayBlock.Visibility = Visibility.Collapsed;
                     DisplayText.Visibility = Visibility.Collapsed;
+                    messageQueue.Clear();
+                    textTimer.Stop();
                     IsActiveRunning = false;
 
                     Text_Timed("Podařilo se mi získat palantír a vrátit ho na místo.");
@@ -391,8 +392,12 @@ namespace IT2A_rocnikovy_projekt_Polda
                     Text_Timed("a co s ním chtěl když ho byl ochotný tak dobře schovat?");
                     text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "end.mp3")));
                     text.Play();
-                    Thread.Sleep(19000);
-                    Application.Current.Shutdown();
+                    //Thread.Sleep(19000);
+                    //Application.Current.Shutdown();
+                    //text.Stop();
+                    //background.Stop();
+                    //if (menu != null) menu.Show();
+                    //this.Hide();
                 }
                 Text_Timed("Musím sebou vzít ten palantír.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "out.mp3")));
@@ -589,6 +594,11 @@ namespace IT2A_rocnikovy_projekt_Polda
                         Time = next.Length / 12;//(10 + (next.Length * 0.03));
                         Text_Timed_Start(next);
                     }
+                }
+                if (inventory.Items.Any(i => i != null && i.Name == "Palantír") && messageQueue.Count == 0)
+                {
+                    Thread.Sleep(1000);
+                    Application.Current.Shutdown();
                 }
             }
         }
