@@ -19,17 +19,16 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace IT2A_rocnikovy_projekt_Polda
 {
-    // TODO - návod
-    //      - přidat aspoň druhou scénu (místnost s teleportem, odtud zjistí jak použít grimoair) nový xamel?
-    //      - prohra na čas?
-
-    // future TODO - animace chození
+    // future TODO - přidat aspoň druhou scénu (místnost s teleportem, odtud zjistí jak použít grimoair) nový xamel?
+    //             - prohra na čas?
+    //             - animace chození
     //             - animace sbírání věcí
     //             - animace používání věcí
     //             - animace interakce s hotspoty
     //             - konstantní animace hýbajících se věcí (např. plameny na svíčkách, vířící se lektvar atd.)
     //             - animace návodu jako rozbalujícího se svitku
     //             - přidat popisek po najetí myši na item nebo hotspot
+    //             - možnsot zvíraznění klikatelných objektů, hotspotů i itemů
     public partial class MainWindow : Window
     {
         Menu menu;
@@ -130,12 +129,12 @@ namespace IT2A_rocnikovy_projekt_Polda
             OverlayCanvas.MouseMove += MouseMove;
 
             // tutorial
-            Text_Timed("Tak jsem tady. Ve věži toho zloděje.");
-            Text_Timed("Je prázdná, ale vypadá, jako by ji někdo opustil ve spěchu. Nejspíš se sem vydal rovnou včera večer, hned po té krádeži.");
-            Text_Timed("Musel to mít dobře připravené. Všechno tady je rozházené. To naznačuje, že jen vzal, co potřeboval.");
-            Text_Timed("Ale zatím si nejsem jistý, jak se dostal ven. Přece ho tu noc pronásledovali. Byly to jen dvě minuty, ale když se sem dostali, už nenašli nic.");
-            Text_Timed("A teď je to na mě, abych zjistil, jak zpět navrátit ukradený majetek. No tak abych se do toho dal.");
-            Text_Timed("Nejprv bych se měl porozhlédnout kolem a zjistit co nejvíce informací.");
+            Text_Timed("Tak jsem tady. Ve věži toho zloděje. Je prázdná, ale vypadá, jako by ji někdo opustil ve spěchu.");
+            Text_Timed("Nejspíš se sem vydal rovnou včera večer, hned po té krádeži. Musel to mít dobře připravené.");
+            Text_Timed("Všechno tady je rozházené. To naznačuje, že jen vzal, co potřeboval. Ale zatím si nejsem jistý,");
+            Text_Timed("jak se dostal ven. Přece ho tu noc pronásledovali. Byly to jen dvě minuty, ale když se sem dostali, ");
+            Text_Timed("už nenašli nic. A teď je to na mě, abych zjistil, jak zpět navrátit ukradený majetek.");
+            Text_Timed("No tak abych se do toho dal. Nejprv bych se měl porozhlédnout kolem a zjistit co nejvíce informací.");
             text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "tutorial.mp3")));
             text.Play();
         }
@@ -208,7 +207,8 @@ namespace IT2A_rocnikovy_projekt_Polda
             if (point.Name == "Rozbitý lektvar" && !polygons[7].acessable)
             {
                 polygons[7].acessable = true;
-                Text_Timed("Kde se tady asi tak vzal? Vypadá to, že budu potřebovat nový. Z tohohle už kromě střepů moc nezbývá.");
+                Text_Timed("Kde se tady asi tak vzal? Vypadá to, že budu potřebovat nový.");
+                Text_Timed("Z tohohle už kromě střepů moc nezbývá.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "brokePotion.mp3")));
                 text.Play();
             }
@@ -380,11 +380,24 @@ namespace IT2A_rocnikovy_projekt_Polda
             {
                 if (inventory.Items.Any(i => i != null && i.Name == "Palantír"))
                 {
-                    Text_Timed("Podařilo se mi získat palantír a vrátit ho na místo. Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře. Jenom my vrtá hlavou, kde se asi nachází zloděj a co s ním chtěl když ho byl ochotný tak dobře schovat?");
+                    DisplayBlock.Visibility = Visibility.Collapsed;
+                    DisplayText.Visibility = Visibility.Collapsed;
+                    messageQueue.Clear();
+                    textTimer.Stop();
+                    IsActiveRunning = false;
+
+                    Text_Timed("Podařilo se mi získat palantír a vrátit ho na místo.");
+                    Text_Timed("Rituál se zřejmě povedl a já jsem se vrátil zpět do své kanceláře.");
+                    Text_Timed("Jenom my vrtá hlavou, kde se asi nachází zloděj");
+                    Text_Timed("a co s ním chtěl když ho byl ochotný tak dobře schovat?");
                     text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "end.mp3")));
                     text.Play();
-                    Thread.Sleep(19000);
-                    Application.Current.Shutdown();
+                    //Thread.Sleep(19000);
+                    //Application.Current.Shutdown();
+                    //text.Stop();
+                    //background.Stop();
+                    //if (menu != null) menu.Show();
+                    //this.Hide();
                 }
                 Text_Timed("Musím sebou vzít ten palantír.");
                 text.Open(new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "interactions", "out.mp3")));
@@ -427,7 +440,6 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             Mouse.Capture(OverlayCanvas);
 
-            // safely clear previous heldItem visuals if any
             if (heldItem != null)
                 heldItem.ItemImage.IsHitTestVisible = true;
 
@@ -493,7 +505,7 @@ namespace IT2A_rocnikovy_projekt_Polda
             pankrac.move(xPercent, yPercent);
 
 
-            //Text_Timed("Nejspíše úniková cesta hledaného zloděje.Vedou do prázdna, takže se musel teleportovat pryč.", 10); //96
+            //Text_Timed(""); //96
 
             //MessageBox.Show($"{xPercent:F4} , {yPercent:F4}");
         }
@@ -514,7 +526,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
         public void Text_Timed(string text)
         {
-            if (!messageQueue.Contains(text))
+            if (!messageQueue.Contains(text) && messageQueue.Count < 7)
             {
                 messageQueue.Enqueue(text);
                 string next = messageQueue.Peek();
@@ -549,7 +561,7 @@ namespace IT2A_rocnikovy_projekt_Polda
 
             if (text.Length > 92)
             {
-                DisplayText.FontSize =  (46.0 / (text.Length / 88.0)) + text.Length * 0.02;
+                DisplayText.FontSize =  (46.0 / (text.Length / 86.0)) + text.Length * 0.02;
             }
 
             DisplayText.Text = text;
@@ -582,8 +594,13 @@ namespace IT2A_rocnikovy_projekt_Polda
                         Time = next.Length / 12;//(10 + (next.Length * 0.03));
                         Text_Timed_Start(next);
                     }
+                }
+                if (inventory.Items.Any(i => i != null && i.Name == "Palantír") && messageQueue.Count == 0)
+                {
+                    Thread.Sleep(1000);
+                    Application.Current.Shutdown();
+                }
             }
         }
     }
-}
 }
